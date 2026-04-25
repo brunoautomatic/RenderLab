@@ -2,137 +2,221 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RenderLab</title>
 
 <style>
-body {
+* {
   margin: 0;
-  font-family: system-ui, Arial;
-  background: #0f0f10;
-  color: #fff;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background: #0b0b0d;
+  color: #ffffff;
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
 .container {
-  max-width: 700px;
-  margin: 60px auto;
-  background: #17171a;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #131316;
+  border: 1px solid #232328;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #2a2a30;
+  font-size: 12px;
+  font-weight: 500;
+  color: #bdbdc7;
+  margin-bottom: 18px;
 }
 
 h1 {
-  font-size: 32px;
-  margin-bottom: 5px;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
 }
 
-.sub {
-  color: #aaa;
-  margin-bottom: 30px;
-}
-
-input, select {
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #333;
-  background: #111;
-  color: white;
-}
-
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 15px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #6d5dfc, #8a2be2);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
+.subtitle {
+  color: #9d9da8;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 28px;
 }
 
 .step {
   display: none;
 }
 
-.active {
+.step.active {
   display: block;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #f3f3f5;
+}
+
+input,
+select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: 1px solid #2a2a30;
+  background: #0f0f12;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #5f5fff;
+}
+
+input::placeholder {
+  color: #7f7f8a;
+}
+
+button {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #5f5fff, #7a4dff);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 6px;
+}
+
+button:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
 }
 
 .status {
   margin-top: 20px;
-  color: #aaa;
-  font-size: 14px;
+  font-size: 13px;
+  color: #a4a4af;
+  line-height: 1.5;
 }
 
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  background: #2a2a2f;
-  border-radius: 999px;
+.footer {
+  margin-top: 18px;
   font-size: 12px;
-  color: #aaa;
-  margin-bottom: 20px;
+  color: #6f6f78;
+  text-align: center;
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
+  <div class="card">
 
-<span class="badge">RenderLab SaaS</span>
-<h1>Automação de Vídeos</h1>
-<p class="sub">Transforme dados em vídeos automaticamente</p>
+    <span class="badge">RenderLab SaaS</span>
 
-<!-- STEP 1 -->
-<div id="step1" class="step active">
+    <h1>Automação de Vídeos</h1>
 
-<input id="evento" placeholder="Nome do evento">
+    <p class="subtitle">
+      Transforme dados em vídeos e convites automaticamente
+      com processamento inteligente e entrega em nuvem.
+    </p>
 
-<select id="produto">
-  <option value="">Selecionar produto</option>
-  <option>Videos</option>
-  <option>Convites</option>
-  <option>Ambos</option>
-</select>
+    <!-- ETAPA 1 -->
+    <div id="step1" class="step active">
 
-<button onclick="nextStep()">Continuar</button>
+      <div class="section-title">
+        Dados do Evento
+      </div>
 
-</div>
+      <input
+        id="evento"
+        placeholder="Nome do evento"
+      >
 
-<!-- STEP 2 -->
-<div id="step2" class="step">
+      <select id="produto">
+        <option value="">Selecionar produto</option>
+        <option value="Videos">Vídeos</option>
+        <option value="Convites">Convites</option>
+        <option value="Ambos">Ambos</option>
+      </select>
 
-<input id="fotos" placeholder="Fotos dos alunos">
-<input id="logo" placeholder="Logo da escola">
+      <button onclick="nextStep()">
+        Continuar
+      </button>
 
-<select id="tipo">
-  <option>Tipo de formatura</option>
-  <option>Infantil</option>
-  <option>Ensino Médio</option>
-  <option>Superior</option>
-</select>
+    </div>
 
-<input id="info" placeholder="Informações do evento">
+    <!-- ETAPA 2 -->
+    <div id="step2" class="step">
 
-<button onclick="send()">Gerar produção</button>
+      <div class="section-title">
+        Dados de Produção
+      </div>
 
-</div>
+      <input
+        id="fotos"
+        placeholder="Fotos dos alunos"
+      >
 
-<p id="status" class="status"></p>
+      <input
+        id="logo"
+        placeholder="Logo da escola"
+      >
 
+      <select id="tipo">
+        <option value="">Tipo de formatura</option>
+        <option value="Infantil">Infantil</option>
+        <option value="Ensino Medio">Ensino Médio</option>
+        <option value="Superior">Superior</option>
+      </select>
+
+      <input
+        id="info"
+        placeholder="Informações do evento"
+      >
+
+      <button onclick="send()">
+        Iniciar Produção
+      </button>
+
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <div class="footer">
+      RenderLab • Workflow inteligente de produção
+    </div>
+
+  </div>
 </div>
 
 <script>
-
 const webhookURL = "http://SEU_N8N/webhook/form-trigger";
 
 function nextStep() {
@@ -141,27 +225,34 @@ function nextStep() {
 }
 
 async function send() {
-
   const data = {
-    nome_evento: evento.value,
-    produto: produto.value,
-    fotos_alunos: fotos.value,
-    logo_escola: logo.value,
-    tipo_formatura: tipo.value,
-    info_evento: info.value
+    nome_evento: document.getElementById("evento").value,
+    produto: document.getElementById("produto").value,
+    fotos_alunos: document.getElementById("fotos").value,
+    logo_escola: document.getElementById("logo").value,
+    tipo_formatura: document.getElementById("tipo").value,
+    info_evento: document.getElementById("info").value
   };
 
-  status.innerText = "Enviando para RenderLab...";
+  document.getElementById("status").innerText =
+    "Enviando solicitação para o RenderLab...";
 
-  await fetch(webhookURL, {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify(data)
-  });
+  try {
+    await fetch(webhookURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
 
-  status.innerText = "Processando renderização...";
+    document.getElementById("status").innerText =
+      "Produção iniciada com sucesso.";
+  } catch (error) {
+    document.getElementById("status").innerText =
+      "Erro ao enviar solicitação.";
+  }
 }
-
 </script>
 
 </body>
