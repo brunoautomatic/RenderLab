@@ -1,91 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>RenderLab</title>
-  <style>
-    body {
-      font-family: Arial;
-      max-width: 600px;
-      margin: 40px auto;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-    }
-    #status {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>RenderLab</title>
+
+<style>
+body { font-family: Arial; max-width: 600px; margin: 40px auto; }
+.card { padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+input, select, button { width: 100%; padding: 10px; margin: 6px 0; }
+.hidden { display: none; }
+</style>
+
 </head>
 
 <body>
 
+<div class="card">
+
 <h1>RenderLab</h1>
-<p>Automação de vídeos e convites</p>
 
-<form id="form">
+<!-- ETAPA 1 -->
+<div id="step1">
 
-  <input name="nome_aluno" placeholder="Nome do aluno" required>
+<h3>Portal de Produção</h3>
 
-  <input name="foto_aluno" placeholder="Link da foto do aluno" required>
+<input id="evento" placeholder="Nome do Evento" required>
 
-  <input name="logo_escola" placeholder="Link da logo da escola" required>
+<select id="produto">
+  <option value="">Selecionar Produto</option>
+  <option value="Videos">Videos</option>
+  <option value="Convites">Convites</option>
+  <option value="Ambos">Ambos</option>
+</select>
 
-  <select name="produto">
-    <option value="Videos">Videos</option>
-    <option value="Convites">Convites</option>
-    <option value="Ambos">Ambos</option>
-  </select>
+<button onclick="nextStep()">Continuar</button>
 
-  <input name="tipo_formatura" placeholder="Tipo de formatura">
+</div>
 
-  <input name="info_evento" placeholder="Informações do evento">
+<!-- ETAPA 2 -->
+<div id="step2" class="hidden">
 
-  <input name="pasta_videos" placeholder="Pasta vídeos (Drive)">
+<h3>Produção</h3>
 
-  <input name="pasta_convites" placeholder="Pasta convites (Drive)">
+<input id="fotos" placeholder="Fotos dos Alunos (link ou drive)">
+<input id="logo" placeholder="Logo da Escola">
 
-  <button type="submit">Enviar para RenderLab</button>
+<select id="tipo">
+  <option value="">Tipo de Formatura</option>
+  <option value="Infantil">Infantil</option>
+  <option value="Ensino Medio">Ensino Médio</option>
+  <option value="Superior">Superior</option>
+</select>
 
-</form>
+<input id="info" placeholder="Informações do Evento">
 
-<div id="status"></div>
+<button onclick="send()">Enviar para RenderLab</button>
+
+</div>
+
+<p id="status"></p>
+
+</div>
 
 <script>
-const form = document.getElementById("form");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+const webhookURL = "http://SEU_N8N/webhook/form-trigger";
 
-  const data = Object.fromEntries(new FormData(form));
+function nextStep() {
+  document.getElementById("step1").classList.add("hidden");
+  document.getElementById("step2").classList.remove("hidden");
+}
 
-  // TODO: trocar pela URL real do teu n8n
-  const webhookURL = "http://SEU_N8N/webhook/form-trigger";
+async function send() {
 
-  document.getElementById("status").innerText = "Enviando solicitação...";
+  const data = {
+    nome_evento: document.getElementById("evento").value,
+    produto: document.getElementById("produto").value,
+    fotos_alunos: document.getElementById("fotos").value,
+    logo_escola: document.getElementById("logo").value,
+    tipo_formatura: document.getElementById("tipo").value,
+    info_evento: document.getElementById("info").value
+  };
 
-  try {
-    const res = await fetch(webhookURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
+  document.getElementById("status").innerText = "Enviando...";
 
-    const result = await res.json().catch(() => ({}));
+  await fetch(webhookURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
 
-    document.getElementById("status").innerText =
-      "Enviado com sucesso!";
+  document.getElementById("status").innerText = "Enviado! Render iniciando...";
+}
 
-  } catch (err) {
-    document.getElementById("status").innerText =
-      "Erro ao enviar solicitação.";
-  }
-});
 </script>
 
 </body>
