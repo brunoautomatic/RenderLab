@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>RenderLab</title>
+  <style>
+    body {
+      font-family: Arial;
+      max-width: 600px;
+      margin: 40px auto;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+    }
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>RenderLab</h1>
+<p>Automação de vídeos e convites</p>
+
+<form id="form">
+
+  <input name="nome_aluno" placeholder="Nome do aluno" required>
+
+  <input name="foto_aluno" placeholder="Link da foto do aluno" required>
+
+  <input name="logo_escola" placeholder="Link da logo da escola" required>
+
+  <select name="produto">
+    <option value="Videos">Videos</option>
+    <option value="Convites">Convites</option>
+    <option value="Ambos">Ambos</option>
+  </select>
+
+  <input name="tipo_formatura" placeholder="Tipo de formatura">
+
+  <input name="info_evento" placeholder="Informações do evento">
+
+  <input name="pasta_videos" placeholder="Pasta vídeos (Drive)">
+
+  <input name="pasta_convites" placeholder="Pasta convites (Drive)">
+
+  <button type="submit">Enviar para RenderLab</button>
+
+</form>
+
+<div id="status"></div>
+
+<script>
+const form = document.getElementById("form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = Object.fromEntries(new FormData(form));
+
+  // TODO: trocar pela URL real do teu n8n
+  const webhookURL = "http://SEU_N8N/webhook/form-trigger";
+
+  document.getElementById("status").innerText = "Enviando solicitação...";
+
+  try {
+    const res = await fetch(webhookURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json().catch(() => ({}));
+
+    document.getElementById("status").innerText =
+      "Enviado com sucesso!";
+
+  } catch (err) {
+    document.getElementById("status").innerText =
+      "Erro ao enviar solicitação.";
+  }
+});
+</script>
+
+</body>
+</html>
