@@ -1,1 +1,283 @@
+/*
+RenderLab SaaS
+Style System
+*/
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #06070a;
+  --card: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.08);
+  --text: #ffffff;
+  --muted: #9c9cab;
+  --soft: #c7c7d1;
+  --primary: #6b5cff;
+  --primary-2: #8758ff;
+  --accent: #44d7ff;
+  --success: #50ffa0;
+  --shadow: 0 30px 80px rgba(0,0,0,0.35);
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* BACKGROUND */
+
+.bg-glow {
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(98,87,255,0.14),
+    transparent 70%
+  );
+  top: -200px;
+  right: -150px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-glow-2 {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(0,190,255,0.10),
+    transparent 70%
+  );
+  bottom: -250px;
+  left: -150px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* LAYOUT */
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+}
+
+/* TEXT */
+
+.badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: var(--soft);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 14px;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #d9d9e3;
+}
+
+/* INPUTS */
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(107,92,255,0.45);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #8d8d99;
+}
+
+input[type="file"] {
+  padding: 14px;
+  min-height: auto;
+}
+
+/* BUTTONS */
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button,
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--primary-2)
+  );
+  color: white;
+  box-shadow: 0 10px 30px rgba(90,70,255,0.20);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* STATUS */
+
+.status {
+  margin-top: 20px;
+  color: #a6a6b3;
+  font-size: 14px;
+}
+
+.success-banner {
+  padding: 22px;
+  border-radius: 20px;
+  background: rgba(80,255,160,0.05);
+  border: 1px solid rgba(80,255,160,0.15);
+  margin-bottom: 30px;
+}
+
+/* BOXES */
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+.box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 20px;
+  transition: 0.25s;
+}
+
+.box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(122,92,255,0.25);
+}
+
+.box-title {
+  font-size: 13px;
+  color: #a2a2b0;
+  margin-bottom: 8px;
+}
+
+.box-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* FOOTER */
+
+.footer {
+  margin-top: 30px;
+  text-align: center;
+  color: #6f6f78;
+  font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  .card {
+    padding: 28px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  button,
+  .action-btn {
+    width: 100%;
+  }
+}
