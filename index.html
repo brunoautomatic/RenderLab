@@ -1,276 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RenderLab</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RenderLab</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Inter, system-ui, sans-serif;
-  background: #06070a;
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* BACKGROUND GLOW */
-
-.bg-glow {
-  position: fixed;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(98,87,255,0.18), transparent 70%);
-  top: -200px;
-  right: -150px;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.bg-glow-2 {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(0,190,255,0.12), transparent 70%);
-  bottom: -250px;
-  left: -150px;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.container {
-  position: relative;
-  z-index: 2;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 60px 24px;
-}
-
-/* HEADER */
-
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-  min-height: 80vh;
-}
-
-.badge {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(10px);
-  color: #c7c7d1;
-  font-size: 13px;
-  margin-bottom: 20px;
-}
-
-h1 {
-  font-size: 58px;
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: -2px;
-  margin-bottom: 20px;
-}
-
-.highlight {
-  background: linear-gradient(90deg, #7a5cff, #44d7ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-  font-size: 17px;
-  color: #9c9cab;
-  line-height: 1.7;
-  margin-bottom: 30px;
-  max-width: 520px;
-}
-
-.cta-group {
-  display: flex;
-  gap: 14px;
-}
-
-.btn-primary {
-  padding: 14px 22px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(90deg, #6b5cff, #8758ff);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.25s;
-  box-shadow: 0 10px 30px rgba(90,70,255,0.25);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-}
-
-.btn-secondary {
-  padding: 14px 22px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
-  color: white;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.06);
-}
-
-/* DASHBOARD CARD */
-
-.dashboard {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 24px;
-  padding: 28px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-  animation: floatCard 5s ease-in-out infinite;
-}
-
-@keyframes floatCard {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
-}
-
-.card-title {
-  font-size: 15px;
-  margin-bottom: 18px;
-  color: #d9d9e3;
-}
-
-.mini-box {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 14px;
-  transition: 0.25s;
-}
-
-.mini-box:hover {
-  transform: translateY(-4px);
-  border-color: rgba(122,92,255,0.35);
-}
-
-.mini-title {
-  font-size: 13px;
-  color: #9f9fb0;
-  margin-bottom: 8px;
-}
-
-.mini-value {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-/* MOBILE */
-
-@media(max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  h1 {
-    font-size: 42px;
-  }
-}
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="bg-glow"></div>
-<div class="bg-glow-2"></div>
+  <div class="bg-glow"></div>
+  <div class="bg-glow-2"></div>
 
-<div class="container">
+  <div class="container">
 
-<section class="hero">
+    <section class="hero">
 
-<div>
+      <div>
 
-<div class="badge">
-RenderLab SaaS • Produção Automatizada
-</div>
+        <div class="badge">
+          RenderLab SaaS • Produção Automatizada
+        </div>
 
-<h1>
-Transforme dados em
-<span class="highlight">vídeos automáticos</span>
-para formaturas
-</h1>
+        <h1>
+          Transforme dados em
+          <span class="highlight">
+            vídeos automáticos
+          </span>
+          para formaturas
+        </h1>
 
-<p class="subtitle">
-Automatize vídeos, convites e entregas em nuvem com
-workflow inteligente, renderização e acompanhamento em tempo real.
-</p>
+        <p class="subtitle">
+          Automatize vídeos, convites e entregas em nuvem com
+          workflow inteligente, renderização e acompanhamento
+          em tempo real.
+        </p>
 
-<div class="cta-group">
-<button class="btn-primary">
-Iniciar Produção
-</button>
+        <div class="buttons">
 
-<button class="btn-secondary">
-Ver funcionamento
-</button>
-</div>
+          <a
+            href="producao.html"
+            class="action-btn btn-primary"
+          >
+            Iniciar Produção
+          </a>
 
-</div>
+          <a
+            href="#"
+            class="action-btn btn-secondary"
+          >
+            Ver funcionamento
+          </a>
 
-<div class="dashboard">
+        </div>
 
-<div class="card-title">
-Painel de Produção
-</div>
+      </div>
 
-<div class="mini-box">
-<div class="mini-title">
-Solicitações em andamento
-</div>
-<div class="mini-value">
-24 Processando
-</div>
-</div>
+      <div class="card">
 
-<div class="mini-box">
-<div class="mini-title">
-Uploads concluídos
-</div>
-<div class="mini-value">
-182 Finalizados
-</div>
-</div>
+        <div class="section-title">
+          Painel de Produção
+        </div>
 
-<div class="mini-box">
-<div class="mini-title">
-Entrega automática
-</div>
-<div class="mini-value">
-Google Drive + Worker
-</div>
-</div>
+        <div class="box">
+          <div class="box-title">
+            Solicitações em andamento
+          </div>
 
-</div>
+          <div class="box-value">
+            24 Processando
+          </div>
+        </div>
 
-</section>
+        <div class="box">
+          <div class="box-title">
+            Uploads concluídos
+          </div>
 
-</div>
+          <div class="box-value">
+            182 Finalizados
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="box-title">
+            Entrega automática
+          </div>
+
+          <div class="box-value">
+            Google Drive + Worker
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
