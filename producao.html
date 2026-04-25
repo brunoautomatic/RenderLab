@@ -37,10 +37,18 @@
           Dados do Evento
         </div>
 
+        <label class="input-label">
+          Nome do Evento
+        </label>
+
         <input
           id="evento"
-          placeholder="Nome do Evento"
+          placeholder="Ex: Formatura Terceirão 2026"
         >
+
+        <label class="input-label">
+          Produto
+        </label>
 
         <select id="produto">
           <option value="">Selecionar Produto</option>
@@ -67,27 +75,51 @@
           Dados de Produção
         </div>
 
+        <label class="input-label">
+          Fotos dos Alunos
+        </label>
+
         <input
           type="file"
           id="fotos"
           multiple
         >
 
+        <label class="input-helper">
+          Selecione todas as fotos que serão utilizadas
+        </label>
+
+        <label class="input-label">
+          Logo da Escola
+        </label>
+
         <input
           type="file"
           id="logo"
         >
 
+        <label class="input-helper">
+          Arquivo PNG ou JPG com boa qualidade
+        </label>
+
+        <label class="input-label">
+          Tipo de Formatura
+        </label>
+
         <select id="tipo">
-          <option value="">Tipo de Formatura</option>
+          <option value="">Selecionar Tipo</option>
           <option value="Infantil">Infantil</option>
           <option value="Ensino Medio">Ensino Médio</option>
           <option value="Superior">Superior</option>
         </select>
 
+        <label class="input-label">
+          Informações e Endereço do Evento
+        </label>
+
         <input
           id="info"
-          placeholder="Informações e endereço do evento"
+          placeholder="Ex: Salão XYZ • Rua X • 20h"
         >
 
         <div class="buttons">
