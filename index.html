@@ -7,48 +7,54 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f6f6f6;
-  color: #1a1a1a;
+  font-family: system-ui, Arial;
+  background: #0f0f10;
+  color: #fff;
 }
 
 .container {
   max-width: 700px;
   margin: 60px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
+  background: #17171a;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 32px;
   margin-bottom: 5px;
 }
 
 .sub {
-  color: #666;
-  margin-bottom: 25px;
+  color: #aaa;
+  margin-bottom: 30px;
 }
 
-input, select, button {
+input, select {
   width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 14px;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: #111;
+  color: white;
 }
 
 button {
-  background: #1a1a1a;
-  color: white;
-  cursor: pointer;
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
   border: none;
-  transition: 0.2s;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #6d5dfc, #8a2be2);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 button:hover {
-  background: #333;
+  opacity: 0.9;
 }
 
 .step {
@@ -61,62 +67,66 @@ button:hover {
 
 .status {
   margin-top: 20px;
-  font-weight: bold;
+  color: #aaa;
+  font-size: 14px;
 }
 
-.success {
-  color: green;
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #2a2a2f;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 20px;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>RenderLab</h1>
-<p class="sub">Automação de vídeos para formaturas</p>
+<span class="badge">RenderLab SaaS</span>
+<h1>Automação de Vídeos</h1>
+<p class="sub">Transforme dados em vídeos automaticamente</p>
 
-<!-- ETAPA 1 -->
+<!-- STEP 1 -->
 <div id="step1" class="step active">
-
-<h3>Dados do Evento</h3>
 
 <input id="evento" placeholder="Nome do evento">
 
 <select id="produto">
   <option value="">Selecionar produto</option>
-  <option value="Videos">Videos</option>
-  <option value="Convites">Convites</option>
-  <option value="Ambos">Ambos</option>
+  <option>Videos</option>
+  <option>Convites</option>
+  <option>Ambos</option>
 </select>
 
 <button onclick="nextStep()">Continuar</button>
 
 </div>
 
-<!-- ETAPA 2 -->
+<!-- STEP 2 -->
 <div id="step2" class="step">
 
-<h3>Produção</h3>
-
-<input id="fotos" placeholder="Fotos dos alunos (link)">
+<input id="fotos" placeholder="Fotos dos alunos">
 <input id="logo" placeholder="Logo da escola">
 
 <select id="tipo">
-  <option value="">Tipo de formatura</option>
-  <option value="Infantil">Infantil</option>
-  <option value="Ensino Medio">Ensino Médio</option>
-  <option value="Superior">Superior</option>
+  <option>Tipo de formatura</option>
+  <option>Infantil</option>
+  <option>Ensino Médio</option>
+  <option>Superior</option>
 </select>
 
 <input id="info" placeholder="Informações do evento">
 
-<button onclick="send()">Enviar para RenderLab</button>
+<button onclick="send()">Gerar produção</button>
 
 </div>
 
-<!-- STATUS -->
 <p id="status" class="status"></p>
 
 </div>
@@ -133,55 +143,23 @@ function nextStep() {
 async function send() {
 
   const data = {
-    nome_evento: document.getElementById("evento").value,
-    produto: document.getElementById("produto").value,
-    fotos_alunos: document.getElementById("fotos").value,
-    logo_escola: document.getElementById("logo").value,
-    tipo_formatura: document.getElementById("tipo").value,
-    info_evento: document.getElementById("info").value
+    nome_evento: evento.value,
+    produto: produto.value,
+    fotos_alunos: fotos.value,
+    logo_escola: logo.value,
+    tipo_formatura: tipo.value,
+    info_evento: info.value
   };
 
-  document.getElementById("status").innerText = "Enviando solicitação...";
+  status.innerText = "Enviando para RenderLab...";
 
-  try {
-    await fetch(webhookURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
+  await fetch(webhookURL, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify(data)
+  });
 
-    simulateProgress();
-
-  } catch (e) {
-    document.getElementById("status").innerText = "Erro ao enviar.";
-  }
-}
-
-// simulação de UX (vamos trocar depois pelo status real)
-function simulateProgress() {
-
-  let steps = [
-    "Processando dados...",
-    "Baixando arquivos...",
-    "Renderizando vídeo...",
-    "Enviando para nuvem..."
-  ];
-
-  let i = 0;
-
-  let interval = setInterval(() => {
-
-    document.getElementById("status").innerText = steps[i];
-
-    i++;
-
-    if (i === steps.length) {
-      clearInterval(interval);
-      document.getElementById("status").innerHTML =
-        "<span class='success'>Concluído! Vídeo pronto 🎉</span>";
-    }
-
-  }, 1500);
+  status.innerText = "Processando renderização...";
 }
 
 </script>
