@@ -5,29 +5,87 @@
 <title>RenderLab</title>
 
 <style>
-body { font-family: Arial; max-width: 600px; margin: 40px auto; }
-.card { padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
-input, select, button { width: 100%; padding: 10px; margin: 6px 0; }
-.hidden { display: none; }
-</style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6f6f6;
+  color: #1a1a1a;
+}
 
+.container {
+  max-width: 700px;
+  margin: 60px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.sub {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+button {
+  background: #1a1a1a;
+  color: white;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #333;
+}
+
+.step {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.status {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.success {
+  color: green;
+}
+</style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="container">
 
 <h1>RenderLab</h1>
+<p class="sub">Automação de vídeos para formaturas</p>
 
 <!-- ETAPA 1 -->
-<div id="step1">
+<div id="step1" class="step active">
 
-<h3>Portal de Produção</h3>
+<h3>Dados do Evento</h3>
 
-<input id="evento" placeholder="Nome do Evento" required>
+<input id="evento" placeholder="Nome do evento">
 
 <select id="produto">
-  <option value="">Selecionar Produto</option>
+  <option value="">Selecionar produto</option>
   <option value="Videos">Videos</option>
   <option value="Convites">Convites</option>
   <option value="Ambos">Ambos</option>
@@ -38,27 +96,28 @@ input, select, button { width: 100%; padding: 10px; margin: 6px 0; }
 </div>
 
 <!-- ETAPA 2 -->
-<div id="step2" class="hidden">
+<div id="step2" class="step">
 
 <h3>Produção</h3>
 
-<input id="fotos" placeholder="Fotos dos Alunos (link ou drive)">
-<input id="logo" placeholder="Logo da Escola">
+<input id="fotos" placeholder="Fotos dos alunos (link)">
+<input id="logo" placeholder="Logo da escola">
 
 <select id="tipo">
-  <option value="">Tipo de Formatura</option>
+  <option value="">Tipo de formatura</option>
   <option value="Infantil">Infantil</option>
   <option value="Ensino Medio">Ensino Médio</option>
   <option value="Superior">Superior</option>
 </select>
 
-<input id="info" placeholder="Informações do Evento">
+<input id="info" placeholder="Informações do evento">
 
 <button onclick="send()">Enviar para RenderLab</button>
 
 </div>
 
-<p id="status"></p>
+<!-- STATUS -->
+<p id="status" class="status"></p>
 
 </div>
 
@@ -67,8 +126,8 @@ input, select, button { width: 100%; padding: 10px; margin: 6px 0; }
 const webhookURL = "http://SEU_N8N/webhook/form-trigger";
 
 function nextStep() {
-  document.getElementById("step1").classList.add("hidden");
-  document.getElementById("step2").classList.remove("hidden");
+  document.getElementById("step1").classList.remove("active");
+  document.getElementById("step2").classList.add("active");
 }
 
 async function send() {
@@ -82,15 +141,47 @@ async function send() {
     info_evento: document.getElementById("info").value
   };
 
-  document.getElementById("status").innerText = "Enviando...";
+  document.getElementById("status").innerText = "Enviando solicitação...";
 
-  await fetch(webhookURL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
+  try {
+    await fetch(webhookURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
 
-  document.getElementById("status").innerText = "Enviado! Render iniciando...";
+    simulateProgress();
+
+  } catch (e) {
+    document.getElementById("status").innerText = "Erro ao enviar.";
+  }
+}
+
+// simulação de UX (vamos trocar depois pelo status real)
+function simulateProgress() {
+
+  let steps = [
+    "Processando dados...",
+    "Baixando arquivos...",
+    "Renderizando vídeo...",
+    "Enviando para nuvem..."
+  ];
+
+  let i = 0;
+
+  let interval = setInterval(() => {
+
+    document.getElementById("status").innerText = steps[i];
+
+    i++;
+
+    if (i === steps.length) {
+      clearInterval(interval);
+      document.getElementById("status").innerHTML =
+        "<span class='success'>Concluído! Vídeo pronto 🎉</span>";
+    }
+
+  }, 1500);
 }
 
 </script>
