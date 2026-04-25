@@ -1,293 +1,165 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RenderLab | Produção</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RenderLab | Produção</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Inter, system-ui, sans-serif;
-  background: #06070a;
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.bg-glow {
-  position: fixed;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(98,87,255,0.14), transparent 70%);
-  top: -200px;
-  right: -150px;
-  z-index: 0;
-}
-
-.container {
-  position: relative;
-  z-index: 2;
-  max-width: 620px;
-  margin: 60px auto;
-  padding: 20px;
-}
-
-.card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 24px;
-  padding: 36px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-}
-
-.badge {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
-  color: #c7c7d1;
-  font-size: 13px;
-  margin-bottom: 20px;
-}
-
-h1 {
-  font-size: 32px;
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  color: #9c9cab;
-  font-size: 15px;
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
-
-.step {
-  display: none;
-}
-
-.step.active {
-  display: block;
-}
-
-.section-title {
-  font-size: 15px;
-  margin-bottom: 16px;
-  color: #d9d9e3;
-  font-weight: 600;
-}
-
-input,
-select {
-  width: 100%;
-  height: 50px;
-  padding: 0 14px;
-  margin-bottom: 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
-  color: white;
-  font-size: 14px;
-  outline: none;
-}
-
-input[type="file"] {
-  height: auto;
-  padding: 14px;
-}
-
-input::placeholder {
-  color: #8d8d99;
-}
-
-.buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-button {
-  flex: 1;
-  height: 52px;
-  border: none;
-  border-radius: 14px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn-primary {
-  background: linear-gradient(90deg, #6b5cff, #8758ff);
-  color: white;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  color: white;
-}
-
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.06);
-}
-
-.status {
-  margin-top: 20px;
-  color: #a6a6b3;
-  font-size: 14px;
-}
-
-.footer {
-  margin-top: 24px;
-  text-align: center;
-  color: #6f6f78;
-  font-size: 12px;
-}
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="bg-glow"></div>
+  <div class="bg-glow"></div>
+  <div class="bg-glow-2"></div>
 
-<div class="container">
-  <div class="card">
+  <div class="container">
 
-    <div class="badge">
-      RenderLab • Portal de Produção
-    </div>
+    <div class="card">
 
-    <h1>Iniciar Produção</h1>
-
-    <p class="subtitle">
-      Preencha os dados abaixo para iniciar a renderização automática
-      de vídeos e convites personalizados.
-    </p>
-
-    <!-- ETAPA 1 -->
-    <div id="step1" class="step active">
-
-      <div class="section-title">
-        Dados do Evento
+      <div class="badge">
+        RenderLab • Portal de Produção
       </div>
 
-      <input
-        id="evento"
-        placeholder="Nome do Evento"
-      >
+      <h2>
+        Iniciar Produção
+      </h2>
 
-      <select id="produto">
-        <option value="">Selecionar Produto</option>
-        <option value="Videos">Vídeos</option>
-        <option value="Convites">Convites</option>
-        <option value="Ambos">Ambos</option>
-      </select>
+      <p class="subtitle">
+        Preencha os dados abaixo para iniciar a renderização automática
+        de vídeos e convites personalizados.
+      </p>
 
-      <div class="buttons">
-        <button class="btn-primary" onclick="nextStep()">
-          Continuar
-        </button>
+      <!-- ETAPA 1 -->
+      <div id="step1" class="step active">
+
+        <div class="section-title">
+          Dados do Evento
+        </div>
+
+        <input
+          id="evento"
+          placeholder="Nome do Evento"
+        >
+
+        <select id="produto">
+          <option value="">Selecionar Produto</option>
+          <option value="Videos">Vídeos</option>
+          <option value="Convites">Convites</option>
+          <option value="Ambos">Ambos</option>
+        </select>
+
+        <div class="buttons">
+          <button
+            class="btn-primary"
+            onclick="nextStep()"
+          >
+            Continuar
+          </button>
+        </div>
+
       </div>
 
-    </div>
+      <!-- ETAPA 2 -->
+      <div id="step2" class="step">
 
-    <!-- ETAPA 2 -->
-    <div id="step2" class="step">
+        <div class="section-title">
+          Dados de Produção
+        </div>
 
-      <div class="section-title">
-        Dados de Produção
+        <input
+          type="file"
+          id="fotos"
+          multiple
+        >
+
+        <input
+          type="file"
+          id="logo"
+        >
+
+        <select id="tipo">
+          <option value="">Tipo de Formatura</option>
+          <option value="Infantil">Infantil</option>
+          <option value="Ensino Medio">Ensino Médio</option>
+          <option value="Superior">Superior</option>
+        </select>
+
+        <input
+          id="info"
+          placeholder="Informações e endereço do evento"
+        >
+
+        <div class="buttons">
+
+          <button
+            class="btn-secondary"
+            onclick="prevStep()"
+          >
+            Voltar
+          </button>
+
+          <button
+            class="btn-primary"
+            onclick="RenderLab.startProduction()"
+          >
+            Iniciar Produção
+          </button>
+
+        </div>
+
       </div>
 
-      <input
-        type="file"
-        id="fotos"
-        multiple
-      >
+      <div
+        id="status"
+        class="status"
+      ></div>
 
-      <input
-        type="file"
-        id="logo"
-      >
-
-      <select id="tipo">
-        <option value="">Tipo de Formatura</option>
-        <option value="Infantil">Infantil</option>
-        <option value="Ensino Medio">Ensino Médio</option>
-        <option value="Superior">Superior</option>
-      </select>
-
-      <input
-        id="info"
-        placeholder="Informações e endereço do evento"
-      >
-
-      <div class="buttons">
-        <button class="btn-secondary" onclick="prevStep()">
-          Voltar
-        </button>
-
-        <button class="btn-primary" onclick="send()">
-          Iniciar Produção
-        </button>
+      <div class="footer">
+        RenderLab • Workflow inteligente de produção
       </div>
 
-    </div>
-
-    <div id="status" class="status"></div>
-
-    <div class="footer">
-      RenderLab • Workflow inteligente de produção
     </div>
 
   </div>
-</div>
 
-<script>
-const webhookURL = "http://SEU_N8N/webhook/form-trigger";
+  <script>
+    function nextStep() {
+      const evento =
+        document.getElementById("evento").value;
 
-function nextStep() {
-  const evento = document.getElementById("evento").value;
-  const produto = document.getElementById("produto").value;
+      const produto =
+        document.getElementById("produto").value;
 
-  if (!evento || !produto) {
-    document.getElementById("status").innerText =
-      "Preencha Nome do Evento e Produto.";
-    return;
-  }
+      if (!evento || !produto) {
+        document.getElementById("status").innerText =
+          "Preencha Nome do Evento e Produto.";
+        return;
+      }
 
-  document.getElementById("status").innerText = "";
+      document.getElementById("status").innerText = "";
 
-  document.getElementById("step1").classList.remove("active");
-  document.getElementById("step2").classList.add("active");
-}
+      document
+        .getElementById("step1")
+        .classList.remove("active");
 
-function prevStep() {
-  document.getElementById("step2").classList.remove("active");
-  document.getElementById("step1").classList.add("active");
-}
+      document
+        .getElementById("step2")
+        .classList.add("active");
+    }
 
-async function send() {
-  document.getElementById("status").innerText =
-    "Enviando solicitação para o RenderLab...";
+    function prevStep() {
+      document
+        .getElementById("step2")
+        .classList.remove("active");
 
-  setTimeout(() => {
-    window.location.href = "status.html";
-  }, 1500);
-}
-</script>
+      document
+        .getElementById("step1")
+        .classList.add("active");
+    }
+  </script>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
