@@ -3,67 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RenderLab</title>
+<title>Applause | Produção Inteligente</title>
 
 <link rel="stylesheet" href="style.css">
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background: #f8f6f1;
-  color: #111;
+  font-family: Inter, system-ui, sans-serif;
+  background:
+    radial-gradient(circle at top right,
+      rgba(212,175,55,0.08),
+      transparent 30%),
+    radial-gradient(circle at bottom left,
+      rgba(255,255,255,0.03),
+      transparent 30%),
+    #111214;
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* HERO */
 
 .hero {
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
+  gap: 70px;
   align-items: center;
-  min-height: 90vh;
+  padding: 40px 0;
 }
 
 .logo-box {
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 }
 
 .logo {
-  height: 64px;
+  height: 72px;
   width: auto;
   display: block;
-  transition: 0.25s ease;
+  transition: 0.3s;
 }
 
 .logo:hover {
-  transform: translateY(-2px);
-}
-
-.badge {
-  background: rgba(212,175,55,0.08);
-  border: 1px solid rgba(212,175,55,0.25);
-  color: #8a6a12;
-  font-weight: 600;
+  transform: translateY(-3px);
 }
 
 h1 {
-  font-size: 64px;
-  line-height: 1;
+  font-size: 68px;
+  line-height: 0.98;
   font-weight: 800;
-  color: #111;
   letter-spacing: -2px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  max-width: 720px;
 }
 
 .highlight {
-  color: #b8860b;
+  color: #D4AF37;
 }
 
 .subtitle {
   font-size: 18px;
   line-height: 1.8;
-  color: #4b4b4b;
-  max-width: 580px;
-  margin-bottom: 34px;
+  color: rgba(255,255,255,0.78);
+  max-width: 600px;
+  margin-bottom: 36px;
 }
 
 .buttons {
@@ -72,25 +82,34 @@ h1 {
   flex-wrap: wrap;
 }
 
+.action-btn {
+  min-height: 56px;
+  padding: 16px 28px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: 0.25s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn-primary {
   background: linear-gradient(
     135deg,
-    #c9a227,
-    #e0b94f
+    #C9A227,
+    #E5C15A
   );
   color: #111;
-  font-weight: 700;
   box-shadow:
-    0 18px 35px rgba(201,162,39,0.22),
-    0 6px 12px rgba(0,0,0,0.06);
-  transition: 0.25s;
+    0 20px 40px rgba(212,175,55,0.18);
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px) scale(1.01);
+  transform: translateY(-4px);
   box-shadow:
-    0 28px 50px rgba(201,162,39,0.28),
-    0 12px 18px rgba(0,0,0,0.08);
+    0 30px 60px rgba(212,175,55,0.24);
 }
 
 .btn-primary:active {
@@ -98,75 +117,67 @@ h1 {
 }
 
 .btn-secondary {
-  background: white;
-  border: 1px solid rgba(0,0,0,0.08);
-  color: #111;
-  box-shadow:
-    0 10px 25px rgba(0,0,0,0.04);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+  backdrop-filter: blur(12px);
 }
 
 .btn-secondary:hover {
   transform: translateY(-3px);
-  box-shadow:
-    0 18px 35px rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.06);
 }
 
-/* RIGHT CARD */
+/* RIGHT SIDE */
 
 .hero-card {
-  background: white;
-  border-radius: 28px;
-  padding: 34px;
+  background: #f8f6f1;
+  border-radius: 30px;
+  padding: 36px;
+  color: #111;
   box-shadow:
-    0 40px 80px rgba(0,0,0,0.06),
-    0 10px 20px rgba(0,0,0,0.03);
-  border: 1px solid rgba(0,0,0,0.04);
+    0 50px 100px rgba(0,0,0,0.25);
   position: relative;
-  transition: 0.3s;
-}
-
-.hero-card:hover {
-  transform: translateY(-6px);
+  overflow: hidden;
 }
 
 .hero-card::before {
   content: "";
   position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 140px;
-  height: 140px;
+  top: -50px;
+  right: -50px;
+  width: 180px;
+  height: 180px;
   background: radial-gradient(
     circle,
-    rgba(212,175,55,0.12),
+    rgba(212,175,55,0.18),
     transparent 70%
   );
-  z-index: 0;
 }
 
 .card-title {
   font-size: 15px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   position: relative;
   z-index: 2;
 }
 
 .mini-box {
-  background: #fcfbf8;
-  border: 1px solid rgba(0,0,0,0.05);
+  background: white;
   border-radius: 18px;
-  padding: 18px;
+  padding: 20px;
   margin-bottom: 14px;
+  border: 1px solid rgba(0,0,0,0.04);
   transition: 0.25s;
   position: relative;
   z-index: 2;
 }
 
 .mini-box:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow:
-    0 18px 30px rgba(0,0,0,0.04);
+    0 20px 35px rgba(0,0,0,0.05);
 }
 
 .mini-title {
@@ -176,21 +187,26 @@ h1 {
 }
 
 .mini-value {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
-  color: #111;
 }
 
 /* MOBILE */
 
-@media(max-width: 900px) {
+@media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
     gap: 40px;
+    min-height: auto;
+    padding: 60px 0;
   }
 
   h1 {
     font-size: 42px;
+  }
+
+  .logo {
+    height: 56px;
   }
 }
 </style>
@@ -229,17 +245,17 @@ entrega em nuvem sem esforço manual.
 <div class="buttons">
 
 <a
-href="producao.html"
-class="action-btn btn-primary"
+  href="producao.html"
+  class="action-btn btn-primary"
 >
-Iniciar Produção
+  Iniciar Produção
 </a>
 
 <a
-href="#"
-class="action-btn btn-secondary"
+  href="#"
+  class="action-btn btn-secondary"
 >
-Ver Demonstração
+  Ver Demonstração
 </a>
 
 </div>
@@ -253,30 +269,30 @@ Painel de Produção
 </div>
 
 <div class="mini-box">
-<div class="mini-title">
-Solicitações ativas
-</div>
-<div class="mini-value">
-24 Processando
-</div>
-</div>
-
-<div class="mini-box">
-<div class="mini-title">
-Renderizações concluídas
-</div>
-<div class="mini-value">
-182 Finalizadas
-</div>
+  <div class="mini-title">
+    Solicitações ativas
+  </div>
+  <div class="mini-value">
+    24 Processando
+  </div>
 </div>
 
 <div class="mini-box">
-<div class="mini-title">
-Entrega automatizada
+  <div class="mini-title">
+    Renderizações concluídas
+  </div>
+  <div class="mini-value">
+    182 Finalizadas
+  </div>
 </div>
-<div class="mini-value">
-Drive + Worker + n8n
-</div>
+
+<div class="mini-box">
+  <div class="mini-title">
+    Entrega automatizada
+  </div>
+  <div class="mini-value">
+    Drive + Worker + n8n
+  </div>
 </div>
 
 </div>
