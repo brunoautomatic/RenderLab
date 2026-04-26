@@ -1,105 +1,272 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RenderLab</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RenderLab</title>
 
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+  background: #f8f6f1;
+  color: #111;
+}
+
+/* HERO */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.badge {
+  background: rgba(212,175,55,0.08);
+  border: 1px solid rgba(212,175,55,0.25);
+  color: #8a6a12;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.highlight {
+  color: #b8860b;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #4b4b4b;
+  max-width: 580px;
+  margin-bottom: 34px;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    #c9a227,
+    #e0b94f
+  );
+  color: #111;
+  font-weight: 700;
+  box-shadow:
+    0 18px 35px rgba(201,162,39,0.22),
+    0 6px 12px rgba(0,0,0,0.06);
+  transition: 0.25s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 28px 50px rgba(201,162,39,0.28),
+    0 12px 18px rgba(0,0,0,0.08);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: #111;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.04);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 35px rgba(0,0,0,0.06);
+}
+
+/* RIGHT CARD */
+
+.hero-card {
+  background: white;
+  border-radius: 28px;
+  padding: 34px;
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.06),
+    0 10px 20px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.04);
+  position: relative;
+  transition: 0.3s;
+}
+
+.hero-card:hover {
+  transform: translateY(-6px);
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(
+    circle,
+    rgba(212,175,55,0.12),
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.mini-box {
+  background: #fcfbf8;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 14px;
+  transition: 0.25s;
+  position: relative;
+  z-index: 2;
+}
+
+.mini-box:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 30px rgba(0,0,0,0.04);
+}
+
+.mini-title {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.mini-value {
+  font-size: 19px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* MOBILE */
+
+@media(max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="bg-glow"></div>
-  <div class="bg-glow-2"></div>
+<div class="container">
 
-  <div class="container">
+<section class="hero">
 
-    <section class="hero">
+<div>
 
-      <div>
+<div class="badge">
+RenderLab Premium • Automação Inteligente
+</div>
 
-        <div class="badge">
-          RenderLab SaaS • Produção Automatizada
-        </div>
+<h1>
+Sua produção de formaturas,
+<span class="highlight">
+automatizada
+</span>
+do início ao fim
+</h1>
 
-        <h1>
-          Transforme dados em
-          <span class="highlight">
-            vídeos automáticos
-          </span>
-          para formaturas
-        </h1>
+<p class="subtitle">
+Vídeos, convites e entregas organizadas automaticamente,
+com renderização inteligente, workflow profissional e
+entrega em nuvem sem esforço manual.
+</p>
 
-        <p class="subtitle">
-          Automatize vídeos, convites e entregas em nuvem com
-          workflow inteligente, renderização e acompanhamento
-          em tempo real.
-        </p>
+<div class="buttons">
 
-        <div class="buttons">
+<a
+href="producao.html"
+class="action-btn btn-primary"
+>
+Iniciar Produção
+</a>
 
-          <a
-            href="producao.html"
-            class="action-btn btn-primary"
-          >
-            Iniciar Produção
-          </a>
+<a
+href="#"
+class="action-btn btn-secondary"
+>
+Ver Demonstração
+</a>
 
-          <a
-            href="#"
-            class="action-btn btn-secondary"
-          >
-            Ver funcionamento
-          </a>
+</div>
 
-        </div>
+</div>
 
-      </div>
+<div class="hero-card">
 
-      <div class="card">
+<div class="card-title">
+Painel de Produção
+</div>
 
-        <div class="section-title">
-          Painel de Produção
-        </div>
+<div class="mini-box">
+<div class="mini-title">
+Solicitações ativas
+</div>
+<div class="mini-value">
+24 Processando
+</div>
+</div>
 
-        <div class="box">
-          <div class="box-title">
-            Solicitações em andamento
-          </div>
+<div class="mini-box">
+<div class="mini-title">
+Renderizações concluídas
+</div>
+<div class="mini-value">
+182 Finalizadas
+</div>
+</div>
 
-          <div class="box-value">
-            24 Processando
-          </div>
-        </div>
+<div class="mini-box">
+<div class="mini-title">
+Entrega automatizada
+</div>
+<div class="mini-value">
+Drive + Worker + n8n
+</div>
+</div>
 
-        <div class="box">
-          <div class="box-title">
-            Uploads concluídos
-          </div>
+</div>
 
-          <div class="box-value">
-            182 Finalizados
-          </div>
-        </div>
+</section>
 
-        <div class="box">
-          <div class="box-title">
-            Entrega automática
-          </div>
+</div>
 
-          <div class="box-value">
-            Google Drive + Worker
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-  </div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
