@@ -15,16 +15,10 @@
 }
 
 body {
-  font-family: Inter, system-ui, sans-serif;
-  background:
-    radial-gradient(circle at top right,
-      rgba(212,175,55,0.08),
-      transparent 30%),
-    radial-gradient(circle at bottom left,
-      rgba(255,255,255,0.03),
-      transparent 30%),
-    #111214;
-  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Segoe UI", sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -35,45 +29,41 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 70px;
+  gap: 80px;
   align-items: center;
   padding: 40px 0;
 }
 
 .logo-box {
-  margin-bottom: 30px;
+  margin-bottom: 34px;
 }
 
 .logo {
-  height: 72px;
+  height: 68px;
   width: auto;
   display: block;
-  transition: 0.3s;
-}
-
-.logo:hover {
-  transform: translateY(-3px);
 }
 
 h1 {
-  font-size: 68px;
+  font-size: 72px;
   line-height: 0.98;
-  font-weight: 800;
-  letter-spacing: -2px;
+  font-weight: 700;
+  letter-spacing: -2.8px;
+  max-width: 760px;
   margin-bottom: 28px;
-  max-width: 720px;
 }
 
 .highlight {
-  color: #D4AF37;
+  color: #b89b4c;
 }
 
 .subtitle {
-  font-size: 18px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.78);
-  max-width: 600px;
-  margin-bottom: 36px;
+  font-size: 21px;
+  line-height: 1.7;
+  color: #6e6e73;
+  max-width: 620px;
+  margin-bottom: 42px;
+  font-weight: 400;
 }
 
 .buttons {
@@ -84,111 +74,85 @@ h1 {
 
 .action-btn {
   min-height: 56px;
-  padding: 16px 28px;
-  border-radius: 16px;
+  padding: 16px 30px;
+  border-radius: 999px;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 14px;
-  transition: 0.25s;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.25s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
 .btn-primary {
-  background: linear-gradient(
-    135deg,
-    #C9A227,
-    #E5C15A
-  );
-  color: #111;
+  background: #b89b4c;
+  color: white;
   box-shadow:
-    0 20px 40px rgba(212,175,55,0.18);
+    0 12px 30px rgba(184,155,76,0.14);
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow:
-    0 30px 60px rgba(212,175,55,0.24);
-}
-
-.btn-primary:active {
-  transform: translateY(-1px);
+    0 18px 40px rgba(184,155,76,0.18);
 }
 
 .btn-secondary {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  color: white;
-  backdrop-filter: blur(12px);
+  background: white;
+  color: #1d1d1f;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.03);
 }
 
 .btn-secondary:hover {
-  transform: translateY(-3px);
-  background: rgba(255,255,255,0.06);
+  transform: translateY(-2px);
 }
 
-/* RIGHT SIDE */
+/* RIGHT PANEL */
 
 .hero-card {
-  background: #f8f6f1;
-  border-radius: 30px;
-  padding: 36px;
-  color: #111;
+  background: white;
+  border-radius: 32px;
+  padding: 38px;
+  border: 1px solid rgba(0,0,0,0.04);
   box-shadow:
-    0 50px 100px rgba(0,0,0,0.25);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-card::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 180px;
-  height: 180px;
-  background: radial-gradient(
-    circle,
-    rgba(212,175,55,0.18),
-    transparent 70%
-  );
+    0 30px 80px rgba(0,0,0,0.04);
 }
 
 .card-title {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 24px;
-  position: relative;
-  z-index: 2;
+  color: #6e6e73;
 }
 
 .mini-box {
-  background: white;
-  border-radius: 18px;
-  padding: 20px;
+  background: #fbfbfc;
+  border: 1px solid rgba(0,0,0,0.03);
+  border-radius: 22px;
+  padding: 22px;
   margin-bottom: 14px;
-  border: 1px solid rgba(0,0,0,0.04);
-  transition: 0.25s;
-  position: relative;
-  z-index: 2;
+  transition: 0.2s ease;
 }
 
 .mini-box:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow:
-    0 20px 35px rgba(0,0,0,0.05);
+    0 14px 30px rgba(0,0,0,0.03);
 }
 
 .mini-title {
   font-size: 13px;
-  color: #666;
+  color: #86868b;
   margin-bottom: 8px;
 }
 
 .mini-value {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1d1d1f;
 }
 
 /* MOBILE */
@@ -196,17 +160,22 @@ h1 {
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-    gap: 40px;
-    min-height: auto;
+    gap: 48px;
     padding: 60px 0;
+    min-height: auto;
   }
 
   h1 {
-    font-size: 42px;
+    font-size: 44px;
+    letter-spacing: -1.6px;
+  }
+
+  .subtitle {
+    font-size: 18px;
   }
 
   .logo {
-    height: 56px;
+    height: 52px;
   }
 }
 </style>
@@ -229,17 +198,16 @@ h1 {
 </div>
 
 <h1>
-Sua produção de formaturas,
+A nova forma de produzir
 <span class="highlight">
-automatizada
+formaturas
 </span>
-do início ao fim
 </h1>
 
 <p class="subtitle">
-Vídeos, convites e entregas organizadas automaticamente,
-com renderização inteligente, workflow profissional e
-entrega em nuvem sem esforço manual.
+Vídeos, convites e entregas automatizadas com uma
+experiência premium, workflow inteligente e produção
+organizada do início ao fim.
 </p>
 
 <div class="buttons">
@@ -270,7 +238,7 @@ Painel de Produção
 
 <div class="mini-box">
   <div class="mini-title">
-    Solicitações ativas
+    Solicitações em andamento
   </div>
   <div class="mini-value">
     24 Processando
@@ -291,7 +259,7 @@ Painel de Produção
     Entrega automatizada
   </div>
   <div class="mini-value">
-    Drive + Worker + n8n
+    Google Drive + Worker + n8n
   </div>
 </div>
 
