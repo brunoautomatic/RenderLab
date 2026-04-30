@@ -16,7 +16,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
     "Segoe UI", sans-serif;
 
-  background: radial-gradient(circle at top, #ffffff, #f2f2f6 50%, #e9e9ee);
+  background: radial-gradient(circle at top, #ffffff, #f2f2f6 55%, #e9e9ee);
 
   color: #1d1d1f;
   min-height: 100vh;
@@ -28,24 +28,23 @@ body {
   overflow: hidden;
 }
 
-/* 🌫️ fundo vivo animado */
+/* 🌫️ FUNDO COM PROFUNDIDADE */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
 
   background:
-    radial-gradient(circle at 20% 20%, rgba(184,155,76,0.18), transparent 45%),
+    radial-gradient(circle at 20% 20%, rgba(184,155,76,0.18), transparent 50%),
     radial-gradient(circle at 80% 40%, rgba(0,0,0,0.05), transparent 55%);
 
-  animation: floatBg 10s ease-in-out infinite alternate;
-
+  animation: bgFloat 12s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
-@keyframes floatBg {
+@keyframes bgFloat {
   0%   { transform: translateY(0px) scale(1); }
-  100% { transform: translateY(-15px) scale(1.02); }
+  100% { transform: translateY(-20px) scale(1.03); }
 }
 
 /* CONTAINER */
@@ -53,59 +52,63 @@ body::before {
   text-align: center;
   max-width: 820px;
   padding: 40px;
-
-  animation: fadeUp 1s ease forwards;
-  opacity: 0;
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* LOGO */
+/* 🔥 LOGO + HALO GRANDE */
 .logo-box {
   margin-bottom: 28px;
   display: flex;
   justify-content: center;
   position: relative;
+
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
 }
 
-/* glow vivo */
 .logo-box::before {
   content: "";
   position: absolute;
-  width: 220px;
-  height: 220px;
 
-  background: radial-gradient(circle, rgba(184,155,76,0.35), transparent 60%);
-  filter: blur(20px);
+  width: 380px;
+  height: 380px;
+
+  background: radial-gradient(
+    circle,
+    rgba(184,155,76,0.32) 0%,
+    rgba(184,155,76,0.12) 40%,
+    transparent 70%
+  );
+
+  filter: blur(32px);
 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  animation: pulse 4s ease-in-out infinite;
+  z-index: 0;
+
+  animation: pulse 6s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-  50%      { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.95;
+  }
 }
 
 .logo {
-  height: 54px;
+  height: 58px;
   position: relative;
   z-index: 2;
 
+  filter: drop-shadow(0 15px 35px rgba(0,0,0,0.15));
+
   animation: floatLogo 6s ease-in-out infinite;
-  filter: drop-shadow(0 12px 25px rgba(0,0,0,0.12));
 }
 
 @keyframes floatLogo {
@@ -113,7 +116,7 @@ body::before {
   50% { transform: translateY(-6px); }
 }
 
-/* TEXT */
+/* TEXTOS COM ENTRADA ESCALONADA */
 h1 {
   font-size: 64px;
   line-height: 1.05;
@@ -121,7 +124,11 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 24px;
 
+  opacity: 0;
   animation: fadeUp 1.2s ease forwards;
+  animation-delay: 0.2s;
+
+  text-shadow: 0 10px 40px rgba(0,0,0,0.08);
 }
 
 .highlight {
@@ -135,20 +142,24 @@ h1 {
   max-width: 640px;
   margin: 0 auto 40px auto;
 
-  animation: fadeUp 1.4s ease forwards;
+  opacity: 0;
+  animation: fadeUp 1.3s ease forwards;
+  animation-delay: 0.35s;
 }
 
-/* BUTTON */
+/* BOTÃO */
 .buttons {
   display: flex;
   justify-content: center;
 
-  animation: fadeUp 1.6s ease forwards;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards;
+  animation-delay: 0.5s;
 }
 
 .action-btn {
   min-height: 54px;
-  padding: 16px 32px;
+  padding: 16px 34px;
   border-radius: 999px;
 
   text-decoration: none;
@@ -163,17 +174,30 @@ h1 {
   color: white;
 
   box-shadow:
-    0 18px 45px rgba(184,155,76,0.28),
-    0 6px 16px rgba(0,0,0,0.10);
+    0 22px 55px rgba(184,155,76,0.30),
+    0 8px 18px rgba(0,0,0,0.10);
 
   transition: all 0.25s ease;
 }
 
 .action-btn:hover {
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-4px) scale(1.03);
+
   box-shadow:
-    0 30px 70px rgba(184,155,76,0.35),
-    0 10px 25px rgba(0,0,0,0.12);
+    0 30px 80px rgba(184,155,76,0.38),
+    0 12px 25px rgba(0,0,0,0.14);
+}
+
+/* ANIMAÇÃO BASE */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* MOBILE */
@@ -187,7 +211,7 @@ h1 {
   }
 
   .logo {
-    height: 42px;
+    height: 44px;
   }
 }
 </style>
