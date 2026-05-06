@@ -1,398 +1,261 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RenderLab | Produção</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenderLab | Produção</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "Segoe UI", sans-serif;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #ffffff, #f2f2f6 60%, #e9e9ee);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d1d1f;
+        }
 
-  background: radial-gradient(circle at top, #ffffff, #f2f2f6 60%, #e9e9ee);
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(184,155,76,0.12), transparent 45%),
+                radial-gradient(circle at 80% 60%, rgba(0,0,0,0.05), transparent 55%);
+            pointer-events: none;
+        }
 
-  min-height: 100vh;
+        .container { width: 100%; max-width: 720px; padding: 40px; }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+        .card {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 38px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08), 0 10px 30px rgba(0,0,0,0.05);
+        }
 
-  color: #1d1d1f;
-}
+        .logo-top {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 18px;
+            animation: fadeUp 0.6s ease;
+        }
 
-/* FUNDO AMBIENTAL */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
+        .logo-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,155,76,0.28) 0%, rgba(184,155,76,0.10) 40%, transparent 70%);
+            filter: blur(22px);
+            z-index: 1;
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
 
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184,155,76,0.12), transparent 45%),
-    radial-gradient(circle at 80% 60%, rgba(0,0,0,0.05), transparent 55%);
+        .logo-top img {
+            height: 46px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 12px 25px rgba(0,0,0,0.12));
+            opacity: 0.95;
+        }
 
-  pointer-events: none;
-}
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.55; }
+            50% { transform: scale(1.08); opacity: 0.85; }
+        }
 
-/* CONTAINER */
-.container {
-  width: 100%;
-  max-width: 720px;
-  padding: 40px;
-}
+        .badge { font-size: 12px; color: #86868b; margin-bottom: 18px; text-align: center; }
+        h2 { font-size: 34px; font-weight: 700; margin-bottom: 10px; letter-spacing: -1px; text-align: center; }
+        .subtitle { font-size: 16px; color: #6e6e73; margin-bottom: 30px; line-height: 1.5; text-align: center; }
 
-/* CARD PRINCIPAL */
-.card {
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(20px);
+        .step { display: none; }
+        .step.active { display: block; animation: fadeUp 0.4s ease; }
 
-  border-radius: 28px;
+        .input-label { display: block; font-size: 13px; margin-bottom: 6px; color: #444; font-weight: 500; }
+        .input-helper { font-size: 12px; color: #86868b; margin: -10px 0 14px; }
 
-  padding: 38px;
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,0.08);
+            background: rgba(255,255,255,0.9);
+            font-size: 14px;
+            color: #1d1d1f;
+            outline: none;
+            margin-bottom: 16px;
+            transition: 0.2s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
 
-  box-shadow:
-    0 40px 100px rgba(0,0,0,0.08),
-    0 10px 30px rgba(0,0,0,0.05);
-}
+        input:focus, select:focus { border-color: #b89b4c; box-shadow: 0 0 0 4px rgba(184,155,76,0.15); }
 
-/* LOGO */
-.logo-top {
-  position: relative;
+        input[type="file"] { padding: 12px; border: 1px dashed rgba(0,0,0,0.25); background: rgba(255,255,255,0.8); }
+        input[type="file"]::file-selector-button {
+            background: #b89b4c; border: none; color: white; padding: 8px 14px; border-radius: 999px; margin-right: 12px;
+        }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+        .buttons { display: flex; gap: 12px; margin-top: 18px; }
 
-  margin-bottom: 18px;
+        .btn-primary {
+            flex: 1; padding: 14px; border-radius: 999px; border: none; background: #b89b4c; color: white;
+            font-weight: 600; cursor: pointer; box-shadow: 0 20px 50px rgba(184,155,76,0.25); transition: 0.2s ease;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-primary:disabled { background: #ccc; cursor: not-allowed; transform: none; }
 
-  animation: fadeUp 0.6s ease;
-}
+        .btn-secondary { flex: 1; padding: 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: white; cursor: pointer; }
 
-/* glow sem borda, integrado */
-.logo-glow {
-  position: absolute;
+        .status { margin-top: 16px; font-size: 13px; text-align: center; min-height: 20px; }
 
-  width: 200px;
-  height: 200px;
+        .footer { margin-top: 22px; font-size: 12px; color: #aaa; text-align: center; }
 
-  border-radius: 50%;
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-  background: radial-gradient(
-    circle,
-    rgba(184,155,76,0.28) 0%,
-    rgba(184,155,76,0.10) 40%,
-    transparent 70%
-  );
-
-  filter: blur(22px);
-
-  z-index: 1;
-
-  animation: pulseGlow 6s ease-in-out infinite;
-}
-
-/* logo em si */
-.logo-top img {
-  height: 46px;
-
-  position: relative;
-  z-index: 2;
-
-  filter: drop-shadow(0 12px 25px rgba(0,0,0,0.12));
-
-  opacity: 0.95;
-}
-
-/* animação leve */
-@keyframes pulseGlow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.55;
-  }
-  50% {
-    transform: scale(1.08);
-    opacity: 0.85;
-  }
-}
-
-/* HEADER */
-.badge {
-  font-size: 12px;
-  color: #86868b;
-  margin-bottom: 18px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 34px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -1px;
-  text-align: center;
-}
-
-.subtitle {
-  font-size: 16px;
-  color: #6e6e73;
-  margin-bottom: 30px;
-  line-height: 1.5;
-  text-align: center;
-}
-
-/* STEPS */
-.step {
-  display: none;
-}
-
-.step.active {
-  display: block;
-  animation: fadeUp 0.4s ease;
-}
-
-/* INPUTS */
-.input-label {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 6px;
-  color: #444;
-  font-weight: 500;
-}
-
-.input-helper {
-  font-size: 12px;
-  color: #86868b;
-  margin: -10px 0 14px;
-}
-
-input, select {
-  width: 100%;
-  padding: 14px 16px;
-
-  border-radius: 14px;
-
-  border: 1px solid rgba(0,0,0,0.08);
-  background: rgba(255,255,255,0.9);
-
-  font-size: 14px;
-
-  color: #1d1d1f;
-
-  outline: none;
-
-  margin-bottom: 16px;
-
-  transition: 0.2s ease;
-
-  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-}
-
-input:focus, select:focus {
-  border-color: #b89b4c;
-  box-shadow: 0 0 0 4px rgba(184,155,76,0.15);
-}
-
-/* FILE INPUT */
-input[type="file"] {
-  padding: 12px;
-  border: 1px dashed rgba(0,0,0,0.25);
-  background: rgba(255,255,255,0.8);
-}
-
-input[type="file"]::file-selector-button {
-  background: #b89b4c;
-  border: none;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 999px;
-  margin-right: 12px;
-}
-
-/* BOTÕES */
-.buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.btn-primary {
-  flex: 1;
-  padding: 14px;
-  border-radius: 999px;
-  border: none;
-  background: #b89b4c;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 20px 50px rgba(184,155,76,0.25);
-  transition: 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  flex: 1;
-  padding: 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.12);
-  background: white;
-  cursor: pointer;
-}
-
-/* STATUS */
-.status {
-  margin-top: 16px;
-  font-size: 13px;
-  color: #b00020;
-  text-align: center;
-}
-
-/* FOOTER */
-.footer {
-  margin-top: 22px;
-  font-size: 12px;
-  color: #aaa;
-  text-align: center;
-}
-
-/* ANIMAÇÃO */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .card {
-    padding: 24px;
-  }
-
-  h2 {
-    font-size: 26px;
-  }
-}
-</style>
+        @media (max-width: 600px) { .card { padding: 24px; } h2 { font-size: 26px; } }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
+    <div class="card">
+        <div class="logo-top">
+            <div class="logo-glow"></div>
+            <img src="assets/logo_applause.png" alt="RenderLab">
+        </div>
 
-  <div class="card">
+        <div class="badge">RenderLab • Portal de Produção</div>
+        <h2>Iniciar Produção</h2>
+        <p class="subtitle">Preencha os dados para iniciar a automação de vídeos e convites.</p>
 
-    <!-- LOGO -->
-    <div class="logo-top">
-      <div class="logo-glow"></div>
-      <img src="assets/logo_applause.png" alt="RenderLab">
+        <div id="step1" class="step active">
+            <label class="input-label">Nome do Evento</label>
+            <input id="evento" placeholder="Ex: Formatura Terceirão 2026">
+
+            <label class="input-label">Produto</label>
+            <select id="produto">
+                <option value="">Selecionar</option>
+                <option value="Videos">Vídeos</option>
+                <option value="Convites">Convites</option>
+                <option value="Ambos">Ambos</option>
+            </select>
+
+            <div class="buttons">
+                <button class="btn-primary" onclick="nextStep()">Continuar</button>
+            </div>
+        </div>
+
+        <div id="step2" class="step">
+            <label class="input-label">Fotos dos Alunos</label>
+            <input type="file" id="fotos" multiple disabled>
+            <label class="input-helper">Upload via site em breve. Use a pasta local por enquanto.</label>
+
+            <label class="input-label">Tipo de Formatura</label>
+            <select id="tipo_formatura">
+                <option value="Não informado">Selecionar</option>
+                <option value="Infantil">Infantil</option>
+                <option value="Ensino Médio">Ensino Médio</option>
+                <option value="Superior">Superior</option>
+            </select>
+
+            <label class="input-label">Informações do Evento</label>
+            <input id="info_evento" placeholder="Local • Horário • Detalhes">
+
+            <div class="buttons">
+                <button class="btn-secondary" onclick="prevStep()">Voltar</button>
+                <button id="btn-final" class="btn-primary" onclick="RenderLab.startProduction()">
+                    Iniciar Produção
+                </button>
+            </div>
+        </div>
+
+        <div id="status" class="status"></div>
+        <div class="footer">RenderLab • Workflow inteligente de produção</div>
     </div>
-
-    <div class="badge">
-      RenderLab • Portal de Produção
-    </div>
-
-    <h2>Iniciar Produção</h2>
-
-    <p class="subtitle">
-      Preencha os dados para iniciar a automação de vídeos e convites.
-    </p>
-
-    <!-- STEP 1 -->
-    <div id="step1" class="step active">
-
-      <label class="input-label">Nome do Evento</label>
-      <input id="evento" placeholder="Ex: Formatura Terceirão 2026">
-
-      <label class="input-label">Produto</label>
-      <select id="produto">
-        <option value="">Selecionar</option>
-        <option value="Videos">Vídeos</option>
-        <option value="Convites">Convites</option>
-        <option value="Ambos">Ambos</option>
-      </select>
-
-      <div class="buttons">
-        <button class="btn-primary" onclick="nextStep()">
-          Continuar
-        </button>
-      </div>
-
-    </div>
-
-    <!-- STEP 2 -->
-    <div id="step2" class="step">
-
-      <label class="input-label">Fotos dos Alunos</label>
-      <input type="file" multiple>
-
-      <label class="input-helper">Selecione todas as fotos</label>
-
-      <label class="input-label">Logo da Escola</label>
-      <input type="file">
-
-      <label class="input-helper">PNG ou JPG em boa qualidade</label>
-
-      <label class="input-label">Tipo de Formatura</label>
-      <select>
-        <option>Selecionar</option>
-        <option>Infantil</option>
-        <option>Ensino Médio</option>
-        <option>Superior</option>
-      </select>
-
-      <label class="input-label">Informações do Evento</label>
-      <input placeholder="Local • Horário • Detalhes">
-
-      <div class="buttons">
-        <button class="btn-secondary" onclick="prevStep()">Voltar</button>
-        <button class="btn-primary" onclick="RenderLab.startProduction()">
-          Iniciar Produção
-        </button>
-      </div>
-
-    </div>
-
-    <div id="status" class="status"></div>
-
-    <div class="footer">
-      RenderLab • Workflow inteligente de produção
-    </div>
-
-  </div>
-
 </div>
 
 <script>
-function nextStep() {
-  const evento = document.getElementById("evento").value;
-  const produto = document.getElementById("produto").value;
+    // URL DEFINITIVA DO SEU TÚNEL
+    const WEBHOOK_URL = "https://applause.loca.lt/webhook/producao";
 
-  if (!evento || !produto) {
-    document.getElementById("status").innerText =
-      "Preencha os campos obrigatórios.";
-    return;
-  }
+    function nextStep() {
+        const evento = document.getElementById("evento").value;
+        const produto = document.getElementById("produto").value;
 
-  document.getElementById("step1").classList.remove("active");
-  document.getElementById("step2").classList.add("active");
-}
+        if (!evento || !produto) {
+            const statusDiv = document.getElementById("status");
+            statusDiv.style.color = "#b00020";
+            statusDiv.innerText = "Preencha os campos obrigatórios.";
+            return;
+        }
 
-function prevStep() {
-  document.getElementById("step2").classList.remove("active");
-  document.getElementById("step1").classList.add("active");
-}
+        document.getElementById("status").innerText = "";
+        document.getElementById("step1").classList.remove("active");
+        document.getElementById("step2").classList.add("active");
+    }
+
+    function prevStep() {
+        document.getElementById("step2").classList.remove("active");
+        document.getElementById("step1").classList.add("active");
+    }
+
+    const RenderLab = {
+        async startProduction() {
+            const statusDiv = document.getElementById("status");
+            const btn = document.getElementById("btn-final");
+            
+            statusDiv.style.color = "#b89b4c";
+            statusDiv.innerText = "Enviando comando para o servidor...";
+            btn.disabled = true;
+
+            // Coleta os dados que o n8n espera receber
+            const payload = {
+                evento: document.getElementById("evento").value,
+                produto: document.getElementById("produto").value,
+                tipo_formatura: document.getElementById("tipo_formatura").value,
+                info_evento: document.getElementById("info_evento").value,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Bypass-Tunnel-Reminder": "true" // Pula a tela de aviso do LocalTunnel
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    statusDiv.style.color = "green";
+                    statusDiv.innerText = "✅ Sucesso! A produção foi enviada para o seu PC.";
+                    
+                    setTimeout(() => {
+                        alert("Produção iniciada no servidor local!");
+                        location.reload();
+                    }, 2000);
+                } else {
+                    throw new Error("Erro no servidor");
+                }
+            } catch (error) {
+                statusDiv.style.color = "#b00020";
+                statusDiv.innerText = "❌ Erro: Verifique se o n8n e o Túnel estão ligados no seu PC.";
+                btn.disabled = false;
+                console.error("Erro no envio:", error);
+            }
+        }
+    };
 </script>
 
 </body>
