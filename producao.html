@@ -6,229 +6,181 @@
     <title>RenderLab | Produção</title>
 
     <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        body{
-            font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
             background:
-                radial-gradient(circle at top,#ffffff,#f2f2f6 60%,#e9e9ee);
-            min-height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            color:#1d1d1f;
-            overflow-x:hidden;
+                radial-gradient(circle at top, #ffffff, #f2f2f6 60%, #e9e9ee);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d1d1f;
         }
 
-        body::before{
-            content:"";
-            position:fixed;
-            inset:0;
-
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
             background:
                 radial-gradient(circle at 20% 20%, rgba(184,155,76,0.12), transparent 45%),
                 radial-gradient(circle at 80% 60%, rgba(0,0,0,0.05), transparent 55%);
-
-            pointer-events:none;
+            pointer-events: none;
         }
 
-        .container{
-            width:100%;
-            max-width:720px;
-            padding:40px;
+        .container {
+            width: 100%;
+            max-width: 720px;
+            padding: 40px;
         }
 
-        .card{
-            background:rgba(255,255,255,0.75);
-            backdrop-filter:blur(20px);
-
-            border-radius:28px;
-
-            padding:38px;
-
+        .card {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 38px;
             box-shadow:
                 0 40px 100px rgba(0,0,0,0.08),
                 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .logo-top{
-            position:relative;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            margin-bottom:18px;
+        .logo-top {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 18px;
         }
 
-        .logo-top img{
-            height:46px;
-            position:relative;
-            z-index:2;
-
-            filter:drop-shadow(0 12px 25px rgba(0,0,0,0.12));
+        .logo-top img {
+            height: 46px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 12px 25px rgba(0,0,0,0.12));
         }
 
-        .badge{
-            font-size:12px;
-            color:#86868b;
-            margin-bottom:18px;
-            text-align:center;
+        .badge {
+            font-size: 12px;
+            color: #86868b;
+            margin-bottom: 18px;
+            text-align: center;
         }
 
-        h2{
-            font-size:34px;
-            font-weight:700;
-            margin-bottom:10px;
-            letter-spacing:-1px;
-            text-align:center;
+        h2 {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            text-align: center;
         }
 
-        .subtitle{
-            font-size:16px;
-            color:#6e6e73;
-            margin-bottom:30px;
-            line-height:1.5;
-            text-align:center;
+        .subtitle {
+            font-size: 16px;
+            color: #6e6e73;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            text-align: center;
         }
 
-        .step{
-            display:none;
+        .step {
+            display: none;
         }
 
-        .step.active{
-            display:block;
-            animation:fadeUp 0.4s ease;
+        .step.active {
+            display: block;
+            animation: fadeUp 0.4s ease;
         }
 
-        .input-label{
-            display:block;
-            font-size:13px;
-            margin-bottom:6px;
-            color:#444;
-            font-weight:500;
-            margin-top:12px;
+        .input-label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #444;
+            font-weight: 500;
+            margin-top: 12px;
         }
 
         input,
-        select{
-            width:100%;
-            padding:14px 16px;
-            border-radius:14px;
-            border:1px solid rgba(0,0,0,0.08);
-            background:rgba(255,255,255,0.9);
-            font-size:14px;
-            outline:none;
-            margin-bottom:8px;
-            transition:0.2s ease;
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,0.08);
+            background: rgba(255,255,255,0.9);
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 8px;
+            transition: 0.2s ease;
         }
 
         input:focus,
-        select:focus{
-            border-color:#b89b4c;
-            box-shadow:0 0 0 4px rgba(184,155,76,0.15);
+        select:focus {
+            border-color: #b89b4c;
+            box-shadow: 0 0 0 4px rgba(184,155,76,0.15);
         }
 
-        .buttons{
-            display:flex;
-            gap:12px;
-            margin-top:24px;
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
         }
 
-        .btn-primary{
-            flex:2;
-            padding:14px;
-            border-radius:999px;
-            border:none;
-
-            background:#b89b4c;
-            color:white;
-
-            font-weight:600;
-            cursor:pointer;
-
-            box-shadow:
-                0 20px 50px rgba(184,155,76,0.25);
-
-            transition:0.2s ease;
+        .btn-primary {
+            flex: 2;
+            padding: 14px;
+            border-radius: 999px;
+            border: none;
+            background: #b89b4c;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(184,155,76,0.25);
         }
 
-        .btn-primary:hover{
-            transform:translateY(-2px);
+        .btn-secondary {
+            flex: 1;
+            padding: 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(0,0,0,0.12);
+            background: white;
+            cursor: pointer;
         }
 
-        .btn-secondary{
-            flex:1;
-            padding:14px;
-            border-radius:999px;
-            border:1px solid rgba(0,0,0,0.12);
-            background:white;
-            cursor:pointer;
+        .status {
+            margin-top: 16px;
+            font-size: 13px;
+            text-align: center;
+            min-height: 20px;
         }
 
-        .status{
-            margin-top:16px;
-            font-size:13px;
-            text-align:center;
-            min-height:20px;
+        #check-logo-status {
+            font-size: 11px;
+            font-weight: 600;
+            transition: 0.3s;
         }
 
-        #check-logo-status{
-            font-size:11px;
-            font-weight:600;
-            transition:0.3s;
-            margin-top:6px;
-        }
-
-        .upload-box{
-            border:1px dashed rgba(184,155,76,0.6);
-            border-radius:16px;
-            padding:16px;
-            margin-top:10px;
-            background:rgba(184,155,76,0.04);
-        }
-
-        @keyframes fadeUp{
-            from{
-                opacity:0;
-                transform:translateY(18px);
-            }
-            to{
-                opacity:1;
-                transform:translateY(0);
-            }
-        }
-
-        @media(max-width:768px){
-
-            .container{
-                padding:20px;
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
             }
 
-            .card{
-                padding:24px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-
-            h2{
-                font-size:28px;
-            }
-
-            .buttons{
-                flex-direction:column;
-            }
-
         }
-
     </style>
 </head>
 
 <body>
 
 <div class="container">
-
     <div class="card">
 
         <div class="logo-top">
@@ -248,7 +200,6 @@
         </p>
 
         <!-- STEP 1 -->
-
         <div id="step1" class="step active">
 
             <label class="input-label">
@@ -281,10 +232,7 @@
             </select>
 
             <div class="buttons">
-                <button
-                    class="btn-primary"
-                    onclick="nextStep()"
-                >
+                <button class="btn-primary" onclick="nextStep()">
                     Continuar
                 </button>
             </div>
@@ -292,7 +240,6 @@
         </div>
 
         <!-- STEP 2 -->
-
         <div id="step2" class="step">
 
             <label class="input-label">
@@ -309,13 +256,18 @@
 
             <div
                 id="secao-upload-logo"
-                class="upload-box"
-                style="display:none;"
+                style="
+                    display:none;
+                    border:1px dashed #b89b4c;
+                    padding:15px;
+                    border-radius:14px;
+                    margin:10px 0;
+                "
             >
 
                 <label
                     class="input-label"
-                    style="margin-top:0;color:#b89b4c;"
+                    style="color:#b89b4c;margin-top:0;"
                 >
                     ⚠️ Logo não encontrado. Anexe agora:
                 </label>
@@ -336,14 +288,11 @@
                 type="file"
                 id="fotos"
                 multiple
+                accept="image/*"
             >
 
             <!-- CAMPOS CONVITE -->
-
-            <div
-                id="campos-convite"
-                style="display:none;"
-            >
+            <div id="campos-convite" style="display:none;">
 
                 <label class="input-label">
                     Tipo de Formatura
@@ -394,10 +343,7 @@
 
             <div class="buttons">
 
-                <button
-                    class="btn-secondary"
-                    onclick="prevStep()"
-                >
+                <button class="btn-secondary" onclick="prevStep()">
                     Voltar
                 </button>
 
@@ -416,178 +362,148 @@
         <div id="status" class="status"></div>
 
     </div>
-
 </div>
 
 <script>
 
-    // =========================
-    // URLS
-    // =========================
+const URL_BASE = "https://applause.loca.lt/webhook";
 
-    const URL_BASE =
-        "https://applause-formaturas-poa-rs.loca.lt/webhook";
+const WEBHOOK_INICIAR =
+    `${URL_BASE}/iniciar-producao`;
 
-    const WEBHOOK_INICIAR =
-        `${URL_BASE}/iniciar-producao`;
+const WEBHOOK_CHECK_LOGO =
+    `${URL_BASE}/verificar-logo`;
 
-    const WEBHOOK_CHECK_LOGO =
-        `${URL_BASE}/verificar-logo`;
+function nextStep() {
 
-    // =========================
-    // STEP CONTROL
-    // =========================
+    const evento =
+        document.getElementById("evento").value;
 
-    function nextStep(){
+    const produto =
+        document.getElementById("produto").value;
 
-        const evento =
-            document.getElementById("evento").value;
+    if (!evento || !produto) {
 
-        const produto =
-            document.getElementById("produto").value;
+        alert("Preencha o Nome do Evento e o Produto.");
 
-        if(!evento || !produto){
+        return;
+    }
 
-            alert(
-                "Preencha o Nome do Evento e o Produto."
+    const camposConvite =
+        document.getElementById("campos-convite");
+
+    camposConvite.style.display =
+        (
+            produto === "Convites"
+            || produto === "Ambos"
+        )
+        ? "block"
+        : "none";
+
+    document
+        .getElementById("step1")
+        .classList.remove("active");
+
+    document
+        .getElementById("step2")
+        .classList.add("active");
+}
+
+function prevStep() {
+
+    document
+        .getElementById("step2")
+        .classList.remove("active");
+
+    document
+        .getElementById("step1")
+        .classList.add("active");
+}
+
+const RenderLab = {
+
+    async verificarLogo() {
+
+        const escola =
+            document.getElementById("nome_escola").value;
+
+        const statusMsg =
+            document.getElementById("check-logo-status");
+
+        const secaoUpload =
+            document.getElementById("secao-upload-logo");
+
+        if (escola.length < 3) return;
+
+        statusMsg.style.color = "#86868b";
+
+        statusMsg.innerText =
+            "🔍 Verificando banco de logos...";
+
+        try {
+
+            const response = await fetch(
+                WEBHOOK_CHECK_LOGO,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Bypass-Tunnel-Reminder": "true"
+                    },
+
+                    body: JSON.stringify({
+                        nome_escola: escola
+                    })
+                }
             );
 
-            return;
-        }
+            const data = await response.json();
 
-        const camposConvite =
-            document.getElementById("campos-convite");
+            if (data.existe) {
 
-        camposConvite.style.display =
-            (
-                produto === "Convites" ||
-                produto === "Ambos"
-            )
-            ? "block"
-            : "none";
-
-        document
-            .getElementById("step1")
-            .classList
-            .remove("active");
-
-        document
-            .getElementById("step2")
-            .classList
-            .add("active");
-    }
-
-    function prevStep(){
-
-        document
-            .getElementById("step2")
-            .classList
-            .remove("active");
-
-        document
-            .getElementById("step1")
-            .classList
-            .add("active");
-    }
-
-    // =========================
-    // RENDERLAB
-    // =========================
-
-    const RenderLab = {
-
-        async verificarLogo(){
-
-            const escola =
-                document
-                    .getElementById("nome_escola")
-                    .value;
-
-            const statusMsg =
-                document
-                    .getElementById("check-logo-status");
-
-            const secaoUpload =
-                document
-                    .getElementById("secao-upload-logo");
-
-            if(escola.length < 3) return;
-
-            statusMsg.style.color = "#86868b";
-
-            statusMsg.innerText =
-                "🔍 Verificando banco de logos...";
-
-            try{
-
-                const response = await fetch(
-                    WEBHOOK_CHECK_LOGO,
-                    {
-                        method:"POST",
-
-                        headers:{
-                            "Content-Type":"application/json",
-                            "Bypass-Tunnel-Reminder":"true"
-                        },
-
-                        body:JSON.stringify({
-                            nome_escola: escola
-                        })
-                    }
-                );
-
-                const data = await response.json();
-
-                if(data.existe){
-
-                    statusMsg.style.color = "green";
-
-                    statusMsg.innerText =
-                        "✅ Logo encontrado e pronto para uso.";
-
-                    secaoUpload.style.display = "none";
-
-                }else{
-
-                    statusMsg.style.color = "#b89b4c";
-
-                    statusMsg.innerText =
-                        "⚠️ Logo não encontrado localmente.";
-
-                    secaoUpload.style.display = "block";
-                }
-
-            }catch(e){
-
-                statusMsg.style.color = "#b00020";
+                statusMsg.style.color = "green";
 
                 statusMsg.innerText =
-                    "❌ Erro ao conectar com o servidor.";
+                    "✅ Logo encontrado e pronto para uso.";
+
+                secaoUpload.style.display = "none";
+
+            } else {
+
+                statusMsg.style.color = "#b89b4c";
+
+                statusMsg.innerText =
+                    "⚠️ Logo não encontrado localmente.";
+
+                secaoUpload.style.display = "block";
             }
-        },
 
-        async startProduction(){
+        } catch (e) {
 
-            const statusDiv =
-                document.getElementById("status");
+            statusMsg.innerText =
+                "❌ Erro ao conectar com o servidor local.";
+        }
+    },
 
-            const btn =
-                document.getElementById("btn-final");
+    async startProduction() {
 
-            statusDiv.style.color = "#b89b4c";
+        const statusDiv =
+            document.getElementById("status");
 
-            statusDiv.innerText =
-                "Enviando dados da produção...";
+        const btn =
+            document.getElementById("btn-final");
 
-            btn.disabled = true;
+        statusDiv.style.color = "#b89b4c";
 
-            // =========================
-            // FORMDATA
-            // =========================
+        statusDiv.innerText =
+            "Enviando dados da produção...";
+
+        btn.disabled = true;
+
+        try {
 
             const formData = new FormData();
-
-            // DADOS
 
             formData.append(
                 "evento",
@@ -629,83 +545,70 @@
                 document.getElementById("endereco_evento").value
             );
 
-            // =========================
             // FOTOS
-            // =========================
+            const fotosInput =
+                document.getElementById("fotos");
 
-            const fotos =
-                document.getElementById("fotos").files;
-
-            for(let i = 0; i < fotos.length; i++){
+            for (const foto of fotosInput.files) {
 
                 formData.append(
                     "fotos",
-                    fotos[i]
+                    foto
                 );
             }
 
-            // =========================
             // LOGO
-            // =========================
+            const logoInput =
+                document.getElementById("logo_file");
 
-            const logo =
-                document.getElementById("logo_file").files[0];
-
-            if(logo){
+            if (logoInput.files.length > 0) {
 
                 formData.append(
-                    "logo_escola",
-                    logo
+                    "logo",
+                    logoInput.files[0]
                 );
             }
 
-            try{
+            const response = await fetch(
+                WEBHOOK_INICIAR,
+                {
+                    method: "POST",
 
-                const response = await fetch(
-                    WEBHOOK_INICIAR,
-                    {
-                        method:"POST",
+                    headers: {
+                        "Bypass-Tunnel-Reminder": "true"
+                    },
 
-                        headers:{
-                            "Bypass-Tunnel-Reminder":"true"
-                        },
-
-                        body: formData
-                    }
-                );
-
-                if(response.ok){
-
-                    const data =
-                        await response.json();
-
-                    console.log(data);
-
-                    statusDiv.style.color = "green";
-
-                    statusDiv.innerText =
-                        "✅ Produção iniciada com sucesso!";
-
-                }else{
-
-                    throw new Error();
+                    body: formData
                 }
+            );
 
-            }catch(e){
-
-                console.error(e);
-
-                statusDiv.style.color = "#b00020";
-
-                statusDiv.innerText =
-                    "❌ Falha ao iniciar. Verifique o n8n/Túnel.";
-
-                btn.disabled = false;
+            if (!response.ok) {
+                throw new Error();
             }
 
-        }
+            const data = await response.json();
 
-    };
+            statusDiv.style.color = "green";
+
+            statusDiv.innerText =
+                data.message
+                || "✅ Produção iniciada com sucesso!";
+
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+
+        } catch (e) {
+
+            statusDiv.style.color = "#b00020";
+
+            statusDiv.innerText =
+                "❌ Falha ao iniciar. Verifique o n8n/Túnel.";
+
+            btn.disabled = false;
+        }
+    }
+};
 
 </script>
 
