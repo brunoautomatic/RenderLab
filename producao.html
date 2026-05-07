@@ -1,347 +1,228 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#b89b4c">
-
-<title>RenderLab | Produção</title>
-
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "Segoe UI",
-        sans-serif;
-
-    background:
-        radial-gradient(
-            circle at top,
-            #ffffff,
-            #f2f2f6 60%,
-            #e9e9ee
-        );
-
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #1d1d1f;
-
-    padding: 30px;
-}
-
-body::before {
-
-    content: "";
-
-    position: fixed;
-    inset: 0;
-
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(184,155,76,0.12),
-            transparent 45%
-        ),
-
-        radial-gradient(
-            circle at 80% 60%,
-            rgba(0,0,0,0.05),
-            transparent 55%
-        );
-
-    pointer-events: none;
-}
-
-.container {
-    width: 100%;
-    max-width: 720px;
-}
-
-.card {
-
-    background:
-        rgba(255,255,255,0.75);
-
-    backdrop-filter: blur(20px);
-
-    border-radius: 28px;
-
-    padding: 38px;
-
-    box-shadow:
-        0 40px 100px rgba(0,0,0,0.08),
-        0 10px 30px rgba(0,0,0,0.05);
-
-    position: relative;
-    z-index: 2;
-}
-
-.logo-top {
-
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-bottom: 18px;
-}
-
-.logo-top img {
-
-    height: 46px;
-
-    position: relative;
-    z-index: 2;
-
-    filter:
-        drop-shadow(
-            0 12px 25px rgba(0,0,0,0.12)
-        );
-}
-
-.badge {
-
-    font-size: 12px;
-
-    color: #86868b;
-
-    margin-bottom: 18px;
-
-    text-align: center;
-}
-
-h2 {
-
-    font-size: 34px;
-
-    font-weight: 700;
-
-    margin-bottom: 10px;
-
-    letter-spacing: -1px;
-
-    text-align: center;
-}
-
-.subtitle {
-
-    font-size: 16px;
-
-    color: #6e6e73;
-
-    margin-bottom: 30px;
-
-    line-height: 1.5;
-
-    text-align: center;
-}
-
-.step {
-    display: none;
-}
-
-.step.active {
-
-    display: block;
-
-    animation:
-        fadeUp 0.4s ease;
-}
-
-.input-label {
-
-    display: block;
-
-    font-size: 13px;
-
-    margin-bottom: 6px;
-
-    color: #444;
-
-    font-weight: 500;
-
-    margin-top: 12px;
-}
-
-input,
-select {
-
-    width: 100%;
-
-    padding: 14px 16px;
-
-    border-radius: 14px;
-
-    border:
-        1px solid rgba(0,0,0,0.08);
-
-    background:
-        rgba(255,255,255,0.9);
-
-    font-size: 14px;
-
-    outline: none;
-
-    margin-bottom: 8px;
-
-    transition: 0.2s ease;
-}
-
-input:focus,
-select:focus {
-
-    border-color: #b89b4c;
-
-    box-shadow:
-        0 0 0 4px rgba(184,155,76,0.15);
-}
-
-.buttons {
-
-    display: flex;
-
-    gap: 12px;
-
-    margin-top: 24px;
-}
-
-.btn-primary {
-
-    flex: 2;
-
-    padding: 14px;
-
-    border-radius: 999px;
-
-    border: none;
-
-    background: #b89b4c;
-
-    color: white;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 20px 50px rgba(184,155,76,0.25);
-
-    transition: 0.25s ease;
-}
-
-.btn-primary:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 30px 70px rgba(184,155,76,0.35);
-}
-
-.btn-secondary {
-
-    flex: 1;
-
-    padding: 14px;
-
-    border-radius: 999px;
-
-    border:
-        1px solid rgba(0,0,0,0.12);
-
-    background: white;
-
-    cursor: pointer;
-}
-
-.status {
-
-    margin-top: 16px;
-
-    font-size: 13px;
-
-    text-align: center;
-
-    min-height: 20px;
-}
-
-#check-logo-status {
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    transition: 0.3s;
-}
-
-.upload-box {
-
-    border:
-        1px dashed rgba(184,155,76,0.4);
-
-    background:
-        rgba(184,155,76,0.05);
-
-    padding: 15px;
-
-    border-radius: 14px;
-
-    margin: 10px 0;
-}
-
-@keyframes fadeUp {
-
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-
-    body {
-        padding: 18px;
-    }
-
-    .card {
-        padding: 26px;
-    }
-
-    h2 {
-        font-size: 28px;
-    }
-
-    .buttons {
-        flex-direction: column;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-        width: 100%;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenderLab | Produção</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+            background:
+                radial-gradient(circle at top,#ffffff,#f2f2f6 60%,#e9e9ee);
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#1d1d1f;
+            overflow-x:hidden;
+        }
+
+        body::before{
+            content:"";
+            position:fixed;
+            inset:0;
+
+            background:
+                radial-gradient(circle at 20% 20%, rgba(184,155,76,0.12), transparent 45%),
+                radial-gradient(circle at 80% 60%, rgba(0,0,0,0.05), transparent 55%);
+
+            pointer-events:none;
+        }
+
+        .container{
+            width:100%;
+            max-width:720px;
+            padding:40px;
+        }
+
+        .card{
+            background:rgba(255,255,255,0.75);
+            backdrop-filter:blur(20px);
+
+            border-radius:28px;
+
+            padding:38px;
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,0.08),
+                0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .logo-top{
+            position:relative;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin-bottom:18px;
+        }
+
+        .logo-top img{
+            height:46px;
+            position:relative;
+            z-index:2;
+
+            filter:drop-shadow(0 12px 25px rgba(0,0,0,0.12));
+        }
+
+        .badge{
+            font-size:12px;
+            color:#86868b;
+            margin-bottom:18px;
+            text-align:center;
+        }
+
+        h2{
+            font-size:34px;
+            font-weight:700;
+            margin-bottom:10px;
+            letter-spacing:-1px;
+            text-align:center;
+        }
+
+        .subtitle{
+            font-size:16px;
+            color:#6e6e73;
+            margin-bottom:30px;
+            line-height:1.5;
+            text-align:center;
+        }
+
+        .step{
+            display:none;
+        }
+
+        .step.active{
+            display:block;
+            animation:fadeUp 0.4s ease;
+        }
+
+        .input-label{
+            display:block;
+            font-size:13px;
+            margin-bottom:6px;
+            color:#444;
+            font-weight:500;
+            margin-top:12px;
+        }
+
+        input,
+        select{
+            width:100%;
+            padding:14px 16px;
+            border-radius:14px;
+            border:1px solid rgba(0,0,0,0.08);
+            background:rgba(255,255,255,0.9);
+            font-size:14px;
+            outline:none;
+            margin-bottom:8px;
+            transition:0.2s ease;
+        }
+
+        input:focus,
+        select:focus{
+            border-color:#b89b4c;
+            box-shadow:0 0 0 4px rgba(184,155,76,0.15);
+        }
+
+        .buttons{
+            display:flex;
+            gap:12px;
+            margin-top:24px;
+        }
+
+        .btn-primary{
+            flex:2;
+            padding:14px;
+            border-radius:999px;
+            border:none;
+
+            background:#b89b4c;
+            color:white;
+
+            font-weight:600;
+            cursor:pointer;
+
+            box-shadow:
+                0 20px 50px rgba(184,155,76,0.25);
+
+            transition:0.2s ease;
+        }
+
+        .btn-primary:hover{
+            transform:translateY(-2px);
+        }
+
+        .btn-secondary{
+            flex:1;
+            padding:14px;
+            border-radius:999px;
+            border:1px solid rgba(0,0,0,0.12);
+            background:white;
+            cursor:pointer;
+        }
+
+        .status{
+            margin-top:16px;
+            font-size:13px;
+            text-align:center;
+            min-height:20px;
+        }
+
+        #check-logo-status{
+            font-size:11px;
+            font-weight:600;
+            transition:0.3s;
+            margin-top:6px;
+        }
+
+        .upload-box{
+            border:1px dashed rgba(184,155,76,0.6);
+            border-radius:16px;
+            padding:16px;
+            margin-top:10px;
+            background:rgba(184,155,76,0.04);
+        }
+
+        @keyframes fadeUp{
+            from{
+                opacity:0;
+                transform:translateY(18px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @media(max-width:768px){
+
+            .container{
+                padding:20px;
+            }
+
+            .card{
+                padding:24px;
+            }
+
+            h2{
+                font-size:28px;
+            }
+
+            .buttons{
+                flex-direction:column;
+            }
+
+        }
+
+    </style>
 </head>
 
 <body>
@@ -367,6 +248,7 @@ select:focus {
         </p>
 
         <!-- STEP 1 -->
+
         <div id="step1" class="step active">
 
             <label class="input-label">
@@ -383,23 +265,10 @@ select:focus {
             </label>
 
             <select id="produto">
-
-                <option value="">
-                    Selecionar
-                </option>
-
-                <option value="Videos">
-                    Vídeos
-                </option>
-
-                <option value="Convites">
-                    Convites
-                </option>
-
-                <option value="Ambos">
-                    Ambos
-                </option>
-
+                <option value="">Selecionar</option>
+                <option value="Videos">Vídeos</option>
+                <option value="Convites">Convites</option>
+                <option value="Ambos">Ambos</option>
             </select>
 
             <label class="input-label">
@@ -407,31 +276,23 @@ select:focus {
             </label>
 
             <select id="escopo">
-
-                <option value="Aluno">
-                    Aluno
-                </option>
-
-                <option value="Turma">
-                    Turma
-                </option>
-
+                <option value="Aluno">Aluno</option>
+                <option value="Turma">Turma</option>
             </select>
 
             <div class="buttons">
-
                 <button
                     class="btn-primary"
                     onclick="nextStep()"
                 >
                     Continuar
                 </button>
-
             </div>
 
         </div>
 
         <!-- STEP 2 -->
+
         <div id="step2" class="step">
 
             <label class="input-label">
@@ -446,7 +307,6 @@ select:focus {
 
             <div id="check-logo-status"></div>
 
-            <!-- UPLOAD LOGO -->
             <div
                 id="secao-upload-logo"
                 class="upload-box"
@@ -455,7 +315,7 @@ select:focus {
 
                 <label
                     class="input-label"
-                    style="color:#b89b4c;margin-top:0;"
+                    style="margin-top:0;color:#b89b4c;"
                 >
                     ⚠️ Logo não encontrado. Anexe agora:
                 </label>
@@ -468,7 +328,6 @@ select:focus {
 
             </div>
 
-            <!-- FOTOS -->
             <label class="input-label">
                 Anexar Fotos dos Alunos
             </label>
@@ -477,10 +336,10 @@ select:focus {
                 type="file"
                 id="fotos"
                 multiple
-                accept="image/*"
             >
 
             <!-- CAMPOS CONVITE -->
+
             <div
                 id="campos-convite"
                 style="display:none;"
@@ -491,7 +350,6 @@ select:focus {
                 </label>
 
                 <select id="tipo_formatura">
-
                     <option value="Formatura Ensino Fundamental">
                         Formatura Ensino Fundamental
                     </option>
@@ -503,7 +361,6 @@ select:focus {
                     <option value="Formatura Ensino Superior">
                         Formatura Ensino Superior
                     </option>
-
                 </select>
 
                 <label class="input-label">
@@ -564,153 +421,174 @@ select:focus {
 
 <script>
 
-const WEBHOOK_RENDER =
-"https://applause-formaturas-poa-rs.loca.lt/webhook/applause-render";
+    // =========================
+    // URLS
+    // =========================
 
-const WEBHOOK_CHECK_LOGO =
-"https://applause-formaturas-poa-rs.loca.lt/webhook/verificar-logo";
+    const URL_BASE =
+        "https://applause-formaturas-poa-rs.loca.lt/webhook";
 
-function nextStep() {
+    const WEBHOOK_INICIAR =
+        `${URL_BASE}/iniciar-producao`;
 
-    const evento =
-        document.getElementById("evento").value;
+    const WEBHOOK_CHECK_LOGO =
+        `${URL_BASE}/verificar-logo`;
 
-    const produto =
-        document.getElementById("produto").value;
+    // =========================
+    // STEP CONTROL
+    // =========================
 
-    if (!evento || !produto) {
+    function nextStep(){
 
-        alert(
-            "Preencha o Nome do Evento e o Produto."
-        );
+        const evento =
+            document.getElementById("evento").value;
 
-        return;
-    }
+        const produto =
+            document.getElementById("produto").value;
 
-    const camposConvite =
-        document.getElementById("campos-convite");
+        if(!evento || !produto){
 
-    camposConvite.style.display =
-        (
-            produto === "Convites"
-            ||
-            produto === "Ambos"
-        )
-        ? "block"
-        : "none";
-
-    document.getElementById("step1")
-        .classList.remove("active");
-
-    document.getElementById("step2")
-        .classList.add("active");
-}
-
-function prevStep() {
-
-    document.getElementById("step2")
-        .classList.remove("active");
-
-    document.getElementById("step1")
-        .classList.add("active");
-}
-
-const RenderLab = {
-
-    async verificarLogo() {
-
-        const escola =
-            document.getElementById("nome_escola").value;
-
-        const statusMsg =
-            document.getElementById("check-logo-status");
-
-        const secaoUpload =
-            document.getElementById("secao-upload-logo");
-
-        if (escola.length < 3) return;
-
-        statusMsg.style.color = "#86868b";
-
-        statusMsg.innerText =
-            "🔍 Verificando banco de logos...";
-
-        try {
-
-            const response = await fetch(
-                WEBHOOK_CHECK_LOGO,
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json",
-                        "bypass-tunnel-reminder": "true"
-                    },
-
-                    body: JSON.stringify({
-                        nome_escola: escola
-                    })
-                }
+            alert(
+                "Preencha o Nome do Evento e o Produto."
             );
 
-            const data =
-                await response.json();
+            return;
+        }
 
-            if (data.existe) {
+        const camposConvite =
+            document.getElementById("campos-convite");
 
-                statusMsg.style.color =
-                    "green";
+        camposConvite.style.display =
+            (
+                produto === "Convites" ||
+                produto === "Ambos"
+            )
+            ? "block"
+            : "none";
 
-                statusMsg.innerText =
-                    "✅ Logo encontrado e pronto para uso.";
+        document
+            .getElementById("step1")
+            .classList
+            .remove("active");
 
-                secaoUpload.style.display =
-                    "none";
+        document
+            .getElementById("step2")
+            .classList
+            .add("active");
+    }
 
-            } else {
+    function prevStep(){
 
-                statusMsg.style.color =
-                    "#b89b4c";
+        document
+            .getElementById("step2")
+            .classList
+            .remove("active");
 
-                statusMsg.innerText =
-                    "⚠️ Logo não encontrado localmente.";
+        document
+            .getElementById("step1")
+            .classList
+            .add("active");
+    }
 
-                secaoUpload.style.display =
-                    "block";
-            }
+    // =========================
+    // RENDERLAB
+    // =========================
 
-        } catch (e) {
+    const RenderLab = {
 
-            statusMsg.style.color =
-                "#b00020";
+        async verificarLogo(){
+
+            const escola =
+                document
+                    .getElementById("nome_escola")
+                    .value;
+
+            const statusMsg =
+                document
+                    .getElementById("check-logo-status");
+
+            const secaoUpload =
+                document
+                    .getElementById("secao-upload-logo");
+
+            if(escola.length < 3) return;
+
+            statusMsg.style.color = "#86868b";
 
             statusMsg.innerText =
-                "❌ Falha ao conectar ao servidor.";
-        }
-    },
+                "🔍 Verificando banco de logos...";
 
-    async startProduction() {
+            try{
 
-        const statusDiv =
-            document.getElementById("status");
+                const response = await fetch(
+                    WEBHOOK_CHECK_LOGO,
+                    {
+                        method:"POST",
 
-        const btn =
-            document.getElementById("btn-final");
+                        headers:{
+                            "Content-Type":"application/json",
+                            "Bypass-Tunnel-Reminder":"true"
+                        },
 
-        btn.disabled = true;
+                        body:JSON.stringify({
+                            nome_escola: escola
+                        })
+                    }
+                );
 
-        statusDiv.style.color =
-            "#b89b4c";
+                const data = await response.json();
 
-        statusDiv.innerText =
-            "Enviando arquivos e iniciando produção...";
+                if(data.existe){
 
-        try {
+                    statusMsg.style.color = "green";
 
-            const formData =
-                new FormData();
+                    statusMsg.innerText =
+                        "✅ Logo encontrado e pronto para uso.";
 
-            // CAMPOS
+                    secaoUpload.style.display = "none";
+
+                }else{
+
+                    statusMsg.style.color = "#b89b4c";
+
+                    statusMsg.innerText =
+                        "⚠️ Logo não encontrado localmente.";
+
+                    secaoUpload.style.display = "block";
+                }
+
+            }catch(e){
+
+                statusMsg.style.color = "#b00020";
+
+                statusMsg.innerText =
+                    "❌ Erro ao conectar com o servidor.";
+            }
+        },
+
+        async startProduction(){
+
+            const statusDiv =
+                document.getElementById("status");
+
+            const btn =
+                document.getElementById("btn-final");
+
+            statusDiv.style.color = "#b89b4c";
+
+            statusDiv.innerText =
+                "Enviando dados da produção...";
+
+            btn.disabled = true;
+
+            // =========================
+            // FORMDATA
+            // =========================
+
+            const formData = new FormData();
+
+            // DADOS
+
             formData.append(
                 "evento",
                 document.getElementById("evento").value
@@ -751,74 +629,83 @@ const RenderLab = {
                 document.getElementById("endereco_evento").value
             );
 
+            // =========================
             // FOTOS
-            const fotos =
-                document.getElementById("fotos");
+            // =========================
 
-            for (const file of fotos.files) {
+            const fotos =
+                document.getElementById("fotos").files;
+
+            for(let i = 0; i < fotos.length; i++){
 
                 formData.append(
                     "fotos",
-                    file
+                    fotos[i]
                 );
             }
 
+            // =========================
             // LOGO
-            const logoInput =
-                document.getElementById("logo_file");
+            // =========================
 
-            if (logoInput.files[0]) {
+            const logo =
+                document.getElementById("logo_file").files[0];
+
+            if(logo){
 
                 formData.append(
                     "logo_escola",
-                    logoInput.files[0]
+                    logo
                 );
             }
 
-            // ENVIO
-            const response =
-                await fetch(
-                    WEBHOOK_RENDER,
-                    {
-                        method: "POST",
+            try{
 
-                        headers: {
-                            "bypass-tunnel-reminder": "true"
+                const response = await fetch(
+                    WEBHOOK_INICIAR,
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Bypass-Tunnel-Reminder":"true"
                         },
 
                         body: formData
                     }
                 );
 
-            if (!response.ok) {
-                throw new Error();
+                if(response.ok){
+
+                    const data =
+                        await response.json();
+
+                    console.log(data);
+
+                    statusDiv.style.color = "green";
+
+                    statusDiv.innerText =
+                        "✅ Produção iniciada com sucesso!";
+
+                }else{
+
+                    throw new Error();
+                }
+
+            }catch(e){
+
+                console.error(e);
+
+                statusDiv.style.color = "#b00020";
+
+                statusDiv.innerText =
+                    "❌ Falha ao iniciar. Verifique o n8n/Túnel.";
+
+                btn.disabled = false;
             }
 
-            const data =
-                await response.json();
-
-            console.log(data);
-
-            statusDiv.style.color =
-                "green";
-
-            statusDiv.innerText =
-                "✅ Produção iniciada com sucesso!";
-
-        } catch (e) {
-
-            console.error(e);
-
-            statusDiv.style.color =
-                "#b00020";
-
-            statusDiv.innerText =
-                "❌ Falha ao iniciar produção.";
-
-            btn.disabled = false;
         }
-    }
-};
+
+    };
 
 </script>
 
